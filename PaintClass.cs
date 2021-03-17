@@ -5,18 +5,20 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+
 namespace DrawNamespace
 {
+    using Factory;
     public class Paint
     {
         //private List<AbstractFigure> FigureList;
-        static Canvas Canva;
+        Canvas Canva;
 
         public Point PrevPos;
         public Point NewPos;
 
-
         AbstractFigure ChosenFigure;
+        FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
 
         public void SetPos(Point pos)
@@ -31,39 +33,39 @@ namespace DrawNamespace
             PrevPos.Y = -1;
             NewPos.X = -1;
             NewPos.Y = -1;
-            ChosenFigure = ChosenFigure.GetNew();
+            //ChosenFigure = CurrentFactory.GetFigure();
+            ChosenFigure = null;
         }
 
-        public void SetFigure(AbstractFigure figure)
+        public void SetFactory(FiguresFactory factory)
         {
-            ChosenFigure = figure;
+            //ChosenFigure = figure;
         }
 
-        public void DrawCurrentFigure(double Thickness, Brush Fill, Brush Border)
+        public void DrawCurrentFigure(double thickness, Brush fill, Brush border)
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {
-                ChosenFigure = ChosenFigure.GetNew();
+                //ChosenFigure = ChosenFigure.GetNew();
                 //ChosenFigure = new(ChosenFigure.GetType);
-
-                ChosenFigure.BorderColor = Border;
-                ChosenFigure.FillColor = Fill;
-                ChosenFigure.Thickness = Thickness;
+                CurrentFactory.GetFigure(thickness, fill, border);
+                //ChosenFigure.BorderColor = Border;
+                //ChosenFigure.FillColor = Fill;
+                //ChosenFigure.Thickness = Thickness;
                 ChosenFigure.NewPos = NewPos;
                 ChosenFigure.PrevPos = PrevPos;
-                NewPos = ChosenFigure.Draw();
-                if (!Canva.Children.Contains(ChosenFigure.FigureArea))
-                {
-                    Canva.Children.Add(ChosenFigure.FigureArea);
+                NewPos = ChosenFigure.Draw(Canva);
+                //if (!Canva.Children.Contains(ChosenFigure.FigureArea))
+                //{
+                    //Canva.Children.Add(ChosenFigure.FigureArea);
                     rewind.AddToFigureList(ChosenFigure);
-                }
+                //}
             }
         }
 
         public Paint(Canvas canvaToDraw)
         {
-            ChosenFigure = new ClassLine(Canva);
-            AbstractFigure.AreaToDraw = canvaToDraw;
+            CurrentFactory = new LineFactory();
             Canva = canvaToDraw;
             //pointCollection = new PointCollection();
             NewPos = new Point() { X = -1, Y = -1 };

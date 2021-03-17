@@ -6,19 +6,19 @@ using System.Windows;
 
 namespace Figures
 {
-    public class ClassRectangle : AbstractFigure
+    public class MyRectangle : AbstractFigure
     {
         Rectangle rect;
 
-        public override AbstractFigure GetNew()
-        {
-            return new ClassRectangle(AreaToDraw)
-            {
-                FigureArea = new Canvas()
-            };
-        }
+        //public override AbstractFigure GetNew()
+        //{
+        //    return new ClassRectangle(AreaToDraw)
+        //    {
+        //        FigureArea = new Canvas()
+        //    };
+        //}
 
-        public override Point Draw()
+        public override Point Draw(Canvas canva)
         {
             rect = new Rectangle()
             {
@@ -37,12 +37,11 @@ namespace Figures
             else
                 Canvas.SetLeft(rect, PrevPos.X - rect.Width);
 
-            FigureArea = new Canvas();
-            FigureArea.Children.Add(rect);
+            canva.Children.Add(rect);
             return NullPos;
         }
 
-        public ClassRectangle(Canvas Zone) : base(Zone)
+        public MyRectangle(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
 
         }

@@ -26,7 +26,7 @@ namespace DrawNamespace
         {
             if (FigureList.Count >= 1 && CurrStep >= 0)
             {
-                Canva.Children.Remove(FigureList[CurrStep--].FigureArea);
+                Canva.Children.Remove(FigureList[CurrStep--].);
             }
         }
 

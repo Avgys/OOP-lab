@@ -10,19 +10,19 @@ using System.Windows.Media;
 
 namespace Figures
 {
-    class ClassEllipse : AbstractFigure
+    class MyEllipse : AbstractFigure
     {
         Ellipse ellipse;
 
-        public override AbstractFigure GetNew()
-        {
-            return new ClassEllipse(AreaToDraw)
-            {
-                FigureArea = new Canvas()
-            }; 
-        }
+        //public override AbstractFigure GetNew()
+        //{
+        //    return new ClassEllipse(AreaToDraw)
+        //    {
+        //        FigureArea = new Canvas()
+        //    }; 
+        //}
 
-        public override Point Draw()
+        public override Point Draw(Canvas canva)
         {
             ellipse = new Ellipse()
             {
@@ -42,11 +42,11 @@ namespace Figures
             else
                 Canvas.SetLeft(ellipse, PrevPos.X - ellipse.Width);
             
-            FigureArea.Children.Add(ellipse);
+            canva.Children.Add(ellipse);
             return NullPos;
         }
 
-        public ClassEllipse(Canvas Zone) : base(Zone)
+        public MyEllipse(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }
     }

@@ -12,8 +12,7 @@ namespace Figures
 {
     public class AbstractFigure : Object
     {
-        public static Canvas AreaToDraw;
-        public Canvas FigureArea;
+        //public Canvas FigureArea;
         public Point PrevPos;
         public Point NewPos;
         public double Thickness;
@@ -22,23 +21,22 @@ namespace Figures
         static protected Point NullPos;
 
 
-        public virtual Point Draw()
+        public virtual Point Draw(Canvas canva)
         {
             return NullPos;
         }
 
-        public virtual AbstractFigure GetNew()
-        {
+        //public virtual AbstractFigure GetNew()
+        //{
 
-            FigureArea = new Canvas();
-            return new AbstractFigure(AreaToDraw);
-        }
+        //    FigureArea = new Canvas();
+        //    return new AbstractFigure(AreaToDraw);
+        //}
 
-        public AbstractFigure(Canvas Zone)
+        public AbstractFigure(double thickness, Brush fill, Brush border)
         {
             NullPos.X = -1;
             NullPos.Y = -1;
-            AreaToDraw = Zone;
             //FigureArea.Width = Zone.Width;
             //FigureArea.Height = Zone.Height;
         }

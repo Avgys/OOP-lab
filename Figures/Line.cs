@@ -5,23 +5,23 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class ClassLine : AbstractFigure
+    class MyLine : AbstractFigure
     {
         Line line;
 
-        public ClassLine(Canvas Zone) : base(Zone)
+        public MyLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }
 
-        public override AbstractFigure GetNew()
-        {
-            return new ClassLine(AreaToDraw)
-            {
-                FigureArea = new Canvas()
-            };
-        }
+        //public override AbstractFigure GetNew()
+        //{
+        //    return new ClassLine(AreaToDraw)
+        //    {
+        //        FigureArea = new Canvas()
+        //    };
+        //}
 
-        public override Point Draw()
+        public override Point Draw(Canvas canva)
         {
             line = new Line()
             {
@@ -35,7 +35,7 @@ namespace Figures
                 Stroke = BorderColor,
                 Fill = FillColor
             };
-            FigureArea.Children.Add(line);
+            canva.Children.Add(line);
             return NullPos;
         }
     }
