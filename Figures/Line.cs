@@ -5,25 +5,15 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class MyLine : AbstractFigure
+    class MyLine : SimpleFigure
     {
-        Line line;
-
         public MyLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }
 
-        //public override AbstractFigure GetNew()
-        //{
-        //    return new ClassLine(AreaToDraw)
-        //    {
-        //        FigureArea = new Canvas()
-        //    };
-        //}
-
         public override Point Draw(Canvas canva)
         {
-            line = new Line()
+            Figure = new Line()
             {
                 X1 = PrevPos.X,
                 X2 = NewPos.X,
@@ -35,7 +25,7 @@ namespace Figures
                 Stroke = BorderColor,
                 Fill = FillColor
             };
-            canva.Children.Add(line);
+            canva.Children.Add(Figure);
             return NullPos;
         }
     }

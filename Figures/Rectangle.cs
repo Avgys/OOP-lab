@@ -6,21 +6,11 @@ using System.Windows;
 
 namespace Figures
 {
-    public class MyRectangle : AbstractFigure
+    public class MyRectangle : SimpleFigure
     {
-        Rectangle rect;
-
-        //public override AbstractFigure GetNew()
-        //{
-        //    return new ClassRectangle(AreaToDraw)
-        //    {
-        //        FigureArea = new Canvas()
-        //    };
-        //}
-
         public override Point Draw(Canvas canva)
         {
-            rect = new Rectangle()
+            Figure = new Rectangle()
             {
                 Height = Math.Abs(PrevPos.Y - NewPos.Y),
                 Width = Math.Abs(PrevPos.X - NewPos.X),
@@ -29,15 +19,15 @@ namespace Figures
                 Fill = FillColor
             };          
             if (PrevPos.Y < NewPos.Y)
-                Canvas.SetTop(rect, PrevPos.Y);
+                Canvas.SetTop(Figure, PrevPos.Y);
             else
-                Canvas.SetTop(rect, PrevPos.Y - rect.Height);
+                Canvas.SetTop(Figure, PrevPos.Y - Figure.Height);
             if (PrevPos.X < NewPos.X)
-                Canvas.SetLeft(rect, PrevPos.X);
+                Canvas.SetLeft(Figure, PrevPos.X);
             else
-                Canvas.SetLeft(rect, PrevPos.X - rect.Width);
+                Canvas.SetLeft(Figure, PrevPos.X - Figure.Width);
 
-            canva.Children.Add(rect);
+            canva.Children.Add(Figure);
             return NullPos;
         }
 

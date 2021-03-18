@@ -10,21 +10,11 @@ using System.Windows.Media;
 
 namespace Figures
 {
-    class MyEllipse : AbstractFigure
+    class MyEllipse : SimpleFigure
     {
-        Ellipse ellipse;
-
-        //public override AbstractFigure GetNew()
-        //{
-        //    return new ClassEllipse(AreaToDraw)
-        //    {
-        //        FigureArea = new Canvas()
-        //    }; 
-        //}
-
         public override Point Draw(Canvas canva)
         {
-            ellipse = new Ellipse()
+            Figure = new Ellipse()
             {
                 Width = Math.Abs(PrevPos.X - NewPos.X),
                 Height = Math.Abs(PrevPos.Y - NewPos.Y),                
@@ -34,15 +24,15 @@ namespace Figures
             };
 
             if (PrevPos.Y < NewPos.Y)
-                Canvas.SetTop(ellipse, PrevPos.Y);
+                Canvas.SetTop(Figure, PrevPos.Y);
             else
-                Canvas.SetTop(ellipse, PrevPos.Y - ellipse.Height);
+                Canvas.SetTop(Figure, PrevPos.Y - Figure.Height);
             if (PrevPos.X < NewPos.X)
-                Canvas.SetLeft(ellipse, PrevPos.X);
+                Canvas.SetLeft(Figure, PrevPos.X);
             else
-                Canvas.SetLeft(ellipse, PrevPos.X - ellipse.Width);
+                Canvas.SetLeft(Figure, PrevPos.X - Figure.Width);
             
-            canva.Children.Add(ellipse);
+            canva.Children.Add(Figure);
             return NullPos;
         }
 

@@ -16,7 +16,7 @@
             <ColumnDefinition Width="87*"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas x:Name="Canva" Grid.Column="1" Height="371" VerticalAlignment="Bottom" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" Grid.RowSpan="2">
+        <Canvas x:Name="Canva" Grid.Column="1" Height="371" VerticalAlignment="Bottom" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" Grid.RowSpan="2" PreviewMouseMove="Canva_MouseMove">
             <Rectangle Fill="White" Height="371" Stroke="Black" Width="696"/>
         </Canvas>
         <!--<xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="296,10,0,30" HorizontalAlignment="Left" Width="23" Height="23"/>-->

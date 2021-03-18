@@ -3,10 +3,13 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Threading;
+//using System
 
 namespace Paint_OOP_lab
 {
     using DrawNamespace;
+    using Factory;
     public partial class MainWindow : Window
     {
         Paint paint;
@@ -16,20 +19,15 @@ namespace Paint_OOP_lab
             paint = new Paint(Canva);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            paint.rewind.Backward();
-        }
-
         private void Canva_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //paint.SetPos(e.GetPosition(Canva));
+            paint.SetPrevPos(e.GetPosition(Canva));
         }
 
 
         private void Canva_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            paint.SetPos(e.GetPosition(Canva));
+            paint.SetNewPos(e.GetPosition(Canva));
             SolidColorBrush LineBrush;
             //if (SelectedLineColor.SelectedColor == null)
             //{
@@ -45,6 +43,30 @@ namespace Paint_OOP_lab
             //else
             //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
             paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush);
+            paint.SetPrevPos(new Point() { X = -1, Y = -1 });
+        }
+
+        private void Canva_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (paint.PrevPos.X >= 0 && paint.PrevPos.Y >= 0)
+            {
+                paint.NewPos = (e.GetPosition(Canva));
+                SolidColorBrush LineBrush;
+                //if (SelectedLineColor.SelectedColor == null)
+                //{
+                LineBrush = Brushes.Black;
+                //}
+                //else
+                //    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
+                SolidColorBrush FillBrush;
+                //if (SelectedFillColor.SelectedColor == null)
+                //{
+                FillBrush = Brushes.White;
+                //}
+                //else
+                //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
+                paint.Prerender(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush);                
+            }
         }
 
         private void Canva_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -64,6 +86,11 @@ namespace Paint_OOP_lab
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            paint.rewind.Backward();
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             paint.rewind.RemoveAll();
@@ -76,32 +103,32 @@ namespace Paint_OOP_lab
 
         private void Polygon_Click(object sender, RoutedEventArgs e)
         {
-            paint.SetFigure(new ClassPolygon(Canva));
+            paint.SetFactory(new PolygonFactory());
         }
 
         private void Rectangle_Click(object sender, RoutedEventArgs e)
         {
-            paint.SetFigure(new ClassRectangle(Canva));
+            paint.SetFactory(new RectangleFactory());
         }
 
         private void Ellipes_Click(object sender, RoutedEventArgs e)
         {
-            paint.SetFigure(new ClassEllipse(Canva));
+            paint.SetFactory(new EllipseFactory());
         }
 
         private void Line_Click(object sender, RoutedEventArgs e)
         {
-            paint.SetFigure(new ClassLine(Canva));
+            paint.SetFactory(new LineFactory());
         }
 
         private void BrokenLine_Click(object sender, RoutedEventArgs e)
         {
-            paint.SetFigure(new ClassBrokenLine(Canva));
+            paint.SetFactory(new BrokenLineFactory());
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Program.Close();
-        }
+        }        
     }
 }

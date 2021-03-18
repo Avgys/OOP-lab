@@ -8,24 +8,6 @@ namespace Figures
     class MyBrokenLine : AbstractFigure
     {
         Line line;
-
-        //public override AbstractFigure GetNew()
-        //{
-        //    Canvas buff = FigureArea;
-        //    if (buff == null)
-        //    {
-        //        return new ClassBrokenLine(AreaToDraw)
-        //        {
-        //            FigureArea = new Canvas()
-        //        };
-        //    }
-        //    else
-        //        return new ClassBrokenLine(AreaToDraw)
-        //        {
-        //            FigureArea = buff
-        //        };
-        //}
-
         public override Point Draw(Canvas canva)
         {
             if (NewPos.X > 0 && NewPos.Y > 0)
@@ -46,6 +28,7 @@ namespace Figures
             }
             return NewPos;
         }
+
         public MyBrokenLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }

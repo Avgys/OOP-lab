@@ -18,14 +18,18 @@ namespace DrawNamespace
         public Point NewPos;
 
         AbstractFigure ChosenFigure;
-        FiguresFactory CurrentFactory;
+        public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
 
-        public void SetPos(Point pos)
+        public void SetPrevPos(Point pos)
         {
-            PrevPos = NewPos;
-            NewPos = pos;
+            PrevPos = pos;
         }
+
+        public void SetNewPos(Point pos)
+        {
+            NewPos = pos;
+        }        
 
         public void ClearPos()
         {
@@ -40,18 +44,14 @@ namespace DrawNamespace
         public void SetFactory(FiguresFactory factory)
         {
             //ChosenFigure = figure;
+            CurrentFactory = factory;
         }
 
         public void DrawCurrentFigure(double thickness, Brush fill, Brush border)
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {
-                //ChosenFigure = ChosenFigure.GetNew();
-                //ChosenFigure = new(ChosenFigure.GetType);
-                CurrentFactory.GetFigure(thickness, fill, border);
-                //ChosenFigure.BorderColor = Border;
-                //ChosenFigure.FillColor = Fill;
-                //ChosenFigure.Thickness = Thickness;
+                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border);
                 ChosenFigure.NewPos = NewPos;
                 ChosenFigure.PrevPos = PrevPos;
                 NewPos = ChosenFigure.Draw(Canva);
@@ -63,11 +63,22 @@ namespace DrawNamespace
             }
         }
 
+        public void Prerender(double thickness, Brush fill, Brush border)
+        {
+            if (PrevPos.X >= 0 && PrevPos.Y >= 0)
+            {
+                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border);
+                ChosenFigure.NewPos = NewPos;
+                ChosenFigure.PrevPos = PrevPos;
+                NewPos = ChosenFigure.Draw(Canva);
+                ChosenFigure.Remove(Canva);                
+            }
+        }
+
         public Paint(Canvas canvaToDraw)
         {
             CurrentFactory = new LineFactory();
             Canva = canvaToDraw;
-            //pointCollection = new PointCollection();
             NewPos = new Point() { X = -1, Y = -1 };
             PrevPos = new Point() { X = -1, Y = -1 };
             rewind = new RedoUndoClass(Canva);

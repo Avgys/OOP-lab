@@ -41,7 +41,7 @@ namespace Factory
     public class BrokenLineFactory : FiguresFactory
     {
         public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
-        {
+        {            
             return new MyBrokenLine(thickness, fill, border);
         }
     }

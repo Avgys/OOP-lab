@@ -5,7 +5,7 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class MyPolygon : AbstractFigure
+    class MyPolygon : ComplexFigure
     {
         Polygon polygon;
         private PointCollection pointCollection;
@@ -13,25 +13,7 @@ namespace Figures
         public MyPolygon(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
 
-        }
-
-        //public override AbstractFigure GetNew()
-        //{
-        //    Canvas buff = FigureArea;
-        //    PointCollection buffCollection = pointCollection;
-        //    if (buff == null)
-        //    {
-        //        return new ClassPolygon(AreaToDraw)
-        //        {
-        //            FigureArea = new Canvas(),
-        //            pointCollection = new PointCollection()
-        //        };
-        //    }
-        //    else
-        //    {                
-        //        return this;
-        //    }
-        //}
+        }       
 
         public override Point Draw(Canvas canva)
         {

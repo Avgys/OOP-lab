@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 
+
 namespace DrawNamespace
 {
     using Figures;
@@ -23,18 +24,28 @@ namespace DrawNamespace
         }
 
         public void Backward()
-        {
+        {            
             if (FigureList.Count >= 1 && CurrStep >= 0)
             {
-                Canva.Children.Remove(FigureList[CurrStep--].);
+                if (FigureList[CurrStep] is SimpleFigure)
+                {
+                    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
+                    Canva.Children.Remove(figure.Figure);
+                    CurrStep--;
+                }
             }
         }
 
+
         public void Forward()
         {
-            if (FigureList.Count > CurrStep+1)
-            {
-                Canva.Children.Add(FigureList[++CurrStep].FigureArea);
+            if (FigureList.Count > CurrStep + 1) { 
+
+                ++CurrStep;
+                if (FigureList[CurrStep] is SimpleFigure) {
+                    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
+                    Canva.Children.Add(figure.Figure);
+                }
             }
         }
 
@@ -42,7 +53,7 @@ namespace DrawNamespace
         {
             while (FigureList.Count >= 1 && CurrStep >= 0)
             {
-                Canva.Children.Remove(FigureList[CurrStep--].FigureArea);
+                Backward();
             }
         }
 
