@@ -12,7 +12,6 @@ namespace Figures
         
         public MyPolygon(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
-
         }       
 
         public override Point Draw(Canvas canva)

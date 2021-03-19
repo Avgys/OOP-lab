@@ -27,7 +27,7 @@ namespace Paint_OOP_lab
 
         private void Canva_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            paint.SetNewPos(e.GetPosition(Canva));
+            //paint.SetNewPos(e.GetPosition(Canva));
             SolidColorBrush LineBrush;
             //if (SelectedLineColor.SelectedColor == null)
             //{
@@ -42,7 +42,7 @@ namespace Paint_OOP_lab
             //}
             //else
             //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
-            paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush);
+            paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
             paint.SetPrevPos(new Point() { X = -1, Y = -1 });
         }
 
@@ -50,7 +50,6 @@ namespace Paint_OOP_lab
         {
             if (paint.PrevPos.X >= 0 && paint.PrevPos.Y >= 0)
             {
-                paint.NewPos = (e.GetPosition(Canva));
                 SolidColorBrush LineBrush;
                 //if (SelectedLineColor.SelectedColor == null)
                 //{
@@ -65,7 +64,7 @@ namespace Paint_OOP_lab
                 //}
                 //else
                 //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
-                paint.Prerender(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush);                
+                paint.Prerender(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
             }
         }
 
@@ -129,6 +128,11 @@ namespace Paint_OOP_lab
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Program.Close();
-        }        
+        }
+
+        private void ClearAllButton_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            paint.rewind.ReturnAll();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 
 
+
 namespace DrawNamespace
 {
     using Figures;
@@ -16,8 +17,7 @@ namespace DrawNamespace
         {
             if (CurrStep + 1 < FigureList.Count)
             {
-                FigureList.RemoveRange(CurrStep + 1, FigureList.Count -(CurrStep + 1));
-                
+                FigureList.RemoveRange(CurrStep + 1, FigureList.Count -(CurrStep + 1));                
             }
                 FigureList.Add(figure);
                 CurrStep++;
@@ -40,12 +40,19 @@ namespace DrawNamespace
         public void Forward()
         {
             if (FigureList.Count > CurrStep + 1) { 
-
                 ++CurrStep;
                 if (FigureList[CurrStep] is SimpleFigure) {
                     SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
                     Canva.Children.Add(figure.Figure);
                 }
+            }
+        }
+
+        public void ReturnAll()
+        {
+            while (FigureList.Count > CurrStep + 1)
+            {
+                Forward();
             }
         }
 
