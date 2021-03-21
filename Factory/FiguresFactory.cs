@@ -11,12 +11,12 @@ namespace Factory
     using Figures;
     public abstract class FiguresFactory
     {
-       public abstract AbstractFigure GetFigure(double thickness, Brush fill, Brush border);
+       public abstract AbstractFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure);
     }
 
     public class LineFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
+        public override SimpleFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure)
         {
             return new MyLine(thickness, fill, border);
         }
@@ -24,7 +24,7 @@ namespace Factory
 
     public class EllipseFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
+        public override SimpleFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure)
         {
             return new MyEllipse(thickness, fill, border);
         }
@@ -32,7 +32,7 @@ namespace Factory
 
     public class RectangleFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
+        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure)
         {
             return new MyRectangle(thickness, fill, border);
         }
@@ -40,15 +40,22 @@ namespace Factory
 
     public class BrokenLineFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
-        {            
-            return new MyBrokenLine(thickness, fill, border);
+        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure)
+        {
+            if (figure == null)
+            {
+                return new MyBrokenLine(thickness, fill, border);
+            }
+            else
+            {
+                return figure;
+            }
         }
     }
 
     public class PolygonFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border)
+        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, AbstractFigure figure)
         {
             return new MyPolygon(thickness, fill, border);
         }

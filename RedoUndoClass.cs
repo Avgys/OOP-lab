@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 
 
-
 namespace DrawNamespace
 {
     using Figures;
@@ -30,7 +29,8 @@ namespace DrawNamespace
                 if (FigureList[CurrStep] is SimpleFigure)
                 {
                     SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
-                    Canva.Children.Remove(figure.Figure);
+                    //Canva.Children.Remove(figure.Figure);
+                    figure.Remove(Canva);
                     CurrStep--;
                 }
             }
@@ -43,7 +43,8 @@ namespace DrawNamespace
                 ++CurrStep;
                 if (FigureList[CurrStep] is SimpleFigure) {
                     SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
-                    Canva.Children.Add(figure.Figure);
+                    //Canva.Children.Add(figure.Figure);
+                    figure.Add(Canva);
                 }
             }
         }

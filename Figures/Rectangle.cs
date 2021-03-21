@@ -16,7 +16,8 @@ namespace Figures
                 Width = Math.Abs(PrevPos.X - NewPos.X),
                 StrokeThickness = Thickness,
                 Stroke = BorderColor,
-                Fill = FillColor
+                Fill = FillColor,
+                IsHitTestVisible = false
             };          
             if (PrevPos.Y < NewPos.Y)
                 Canvas.SetTop(Figure, PrevPos.Y);

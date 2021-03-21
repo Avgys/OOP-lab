@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace Figures
 {
-    public class AbstractFigure 
+    public class AbstractFigure
     {
         //public Canvas FigureArea;
         public Point PrevPos;
@@ -27,6 +27,12 @@ namespace Figures
 
         public virtual void Remove(Canvas canva)
         {
+            //canva.Children.Remove(this)
+        }
+
+        public virtual void Add(Canvas canva)
+        {
+            //canva.Children.Remove(this)
         }
 
         public AbstractFigure(double thickness, Brush fill, Brush border)
@@ -45,16 +51,34 @@ namespace Figures
         public SimpleFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }
+        
         public override void Remove(Canvas canva)
         {
             canva.Children.Remove(Figure);
         }
+
+        public override void Add(Canvas canva)
+        {
+            canva.Children.Add(Figure);
+        }
     }
 
-    public class ComplexFigure : AbstractFigure
+    public class CombinedFigure : AbstractFigure
     {
-        public List<Shape> Figure;
-        public ComplexFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public List<SimpleFigure> Figure;
+        public CombinedFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        {
+        }
+        public override void Remove(Canvas canva)
+        {
+            for (int i = 0; i < Figure.Count;i++)
+            canva.Children.Remove(Figure[i].Figure);
+        }
+    }
+
+    public class PointsFigure : AbstractFigure{
+        public List<Point> PointArray;
+        public PointsFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }
     }

@@ -5,18 +5,18 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class MyPolygon : ComplexFigure
+    class MyPolygon : PointsFigure
     {
         Polygon polygon;
         private PointCollection pointCollection;
-        
+
         public MyPolygon(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
         {
         }       
 
         public override Point Draw(Canvas canva)
         {
-            if (pointCollection.Count < 1)
+            if (this.PointArray.Count < 1)
             {
                 polygon = new Polygon()
                 {
@@ -28,9 +28,9 @@ namespace Figures
                     Fill = FillColor
                 };
                 canva.Children.Add(polygon);
-                pointCollection.Add(PrevPos);
+                polygon.Points.Add(PrevPos);
             }
-            pointCollection.Add(NewPos);
+            polygon.Points.Add(NewPos);
             return NewPos;
         }
     }

@@ -14,15 +14,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="13*"/>
             <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <!--<xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="296,10,0,30" HorizontalAlignment="Left" Width="23" Height="23"/>-->
         <!--<xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>-->
-        <Canvas x:Name="Canva" Grid.Column="1" Height="371" VerticalAlignment="Bottom" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" Grid.RowSpan="2" PreviewMouseMove="Canva_MouseMove" Background="White"/>
         <!--<xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>-->
         <Button x:Name="UndoButton" Content="Undo" HorizontalAlignment="Left" Margin="10,288,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click" Height="20"/>
         <Button x:Name="ClearAllButton" Content="Clear all" HorizontalAlignment="Left" Margin="10,313,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click_1" Height="20"/>
         <Button x:Name="Line" Content="Line" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Line_Click"/>
-        <Button x:Name="Re_Undo" Content="Re-Undo" HorizontalAlignment="Left" Margin="10,263,20,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Re_Undo_Click" Height="20"/>
+        <Button x:Name="Re_Undo" Content="Re-Undo" HorizontalAlignment="Left" Margin="10,263,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Re_Undo_Click" Height="20"/>
         <Button x:Name="BrokenLine" Content="Broken Line" HorizontalAlignment="Left" Margin="10,47,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="BrokenLine_Click"/>
         <Button x:Name="Rectangle" Content="Rectangle" HorizontalAlignment="Left" Margin="10,82,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Rectangle_Click"/>
         <Button x:Name="Ellipes" Content="Ellipse" HorizontalAlignment="Left" Margin="10,119,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Ellipes_Click"/>
@@ -42,8 +42,9 @@
                 <MenuItem Header="UnloadPlugin" Height="21" Margin="0,0,7,0"/>
             </MenuItem>
         </Menu>
-        <Label Content="Border" Grid.Column="1" HorizontalAlignment="Left" Margin="253,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fill" Grid.Column="1" HorizontalAlignment="Left" Margin="353,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ClearAllButton_Copy" Content="Clear all" HorizontalAlignment="Left" Margin="10,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="ClearAllButton_Copy_Click" Height="20"/>
+        <Label Content="Border" Grid.Column="1" HorizontalAlignment="Left" Margin="253,10,0,0" VerticalAlignment="Top" Height="26" Width="46"/>
+        <Label Content="Fill" Grid.Column="2" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Height="26" Width="25"/>
+        <Button x:Name="ClearAllButton_Copy" Content="Return all" HorizontalAlignment="Left" Margin="10,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="ClearAllButton_Copy_Click" Height="20"/>
+        <Canvas x:Name="Canva" Grid.Column="1" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" PreviewMouseMove="Canva_MouseMove" Margin="0,63,0,0" Grid.RowSpan="2" Background="White" PreviewMouseDown="Canva_PreviewMouseDown"/>
     </Grid>
 </Window>

@@ -20,9 +20,10 @@ namespace Figures
                 Height = Math.Abs(PrevPos.Y - NewPos.Y),                
                 StrokeThickness = Thickness,
                 Stroke = BorderColor,
-                Fill = FillColor
+                Fill = FillColor,
+                IsHitTestVisible = false
             };
-
+            //Figure.IsHitTestVisible
             if (PrevPos.Y < NewPos.Y)
                 Canvas.SetTop(Figure, PrevPos.Y);
             else

@@ -23,10 +23,11 @@ namespace Figures
                 StrokeEndLineCap = PenLineCap.Round,
                 StrokeThickness = Thickness,
                 Stroke = BorderColor,
-                Fill = FillColor
+                Fill = FillColor,
+                IsHitTestVisible = false
             };
-            canva.Children.Add(Figure);
+            Add(canva);
             return NullPos;
-        }
+        }        
     }
 }

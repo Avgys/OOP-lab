@@ -1,10 +1,8 @@
 ﻿using Figures;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-
 
 namespace DrawNamespace
 {
@@ -18,13 +16,14 @@ namespace DrawNamespace
         //public Point NewPos;
         public Point ImPos;
 
-        SimpleFigure ImFigure;
+        public AbstractFigure ImFigure;
         AbstractFigure ChosenFigure;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
 
         public void SetPrevPos(Point pos)
         {
+            
             PrevPos = pos;
         }
 
@@ -54,17 +53,24 @@ namespace DrawNamespace
             {
                 if (ImFigure != null)
                 {
-                    Canva.Children.Remove(ImFigure.Figure);
+                    ImFigure.Remove(Canva);
+                    ImFigure = null;
                 }
-                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border);
+                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border, ChosenFigure);
                 //ChosenFigure.NewPos = NewPos;
                 ChosenFigure.PrevPos = PrevPos;
                 ChosenFigure.NewPos = pos;
-                ChosenFigure.Draw(Canva);
-                //if (!Canva.Children.Contains(ChosenFigure.FigureArea))
+                PrevPos = ChosenFigure.Draw(Canva);
+                rewind.AddToFigureList(ChosenFigure);
+                
+                //if (ImFigure != null)
                 //{
-                    //Canva.Children.Add(ChosenFigure.FigureArea);
-                    rewind.AddToFigureList(ChosenFigure);
+                //    //Canva.Children.Remove(ImFigure);
+                //    ImFigure.Remove(Canva);
+                //    ChosenFigure = ImFigure;
+                //      PrevPos = ChosenFigure.Draw(Canva);
+                //    rewind.AddToFigureList(ChosenFigure);
+                //    ImFigure = null;
                 //}
             }
         }
@@ -75,14 +81,24 @@ namespace DrawNamespace
             {
                 if (ImFigure != null)
                 {
-                    Canva.Children.Remove(ImFigure.Figure);
+                    //Canva.Children.Remove(ImFigure.Figure);
+                    ImFigure.Remove(Canva);
                 }
-                ImFigure = CurrentFactory.GetFigure(thickness, fill, border) as SimpleFigure;
+                ImFigure = CurrentFactory.GetFigure(thickness, fill, border, ImFigure) as SimpleFigure;
+
+                //ImFigure.NewPos = new Point { X = pos.X -1, Y = pos.Y -1 };
                 ImFigure.NewPos = pos;
                 ImFigure.PrevPos = PrevPos;
+                //ImFigure.Figure.IsHitTestVisible = false;
                 ImFigure.Draw(Canva);
+                //Canva.Focus();
+                //Canva.MouseLeftButtonDown += ;
+                //MouseButtonEventArgs
+                //(ImFigure as SimpleFigure).Figure.MouseLeftButtonUp += ;
             }
         }
+
+       
 
         public Paint(Canvas canvaToDraw)
         {

@@ -5,7 +5,7 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class MyBrokenLine : AbstractFigure
+    class MyBrokenLine : PointsFigure
     {
         Line line;
         public override Point Draw(Canvas canva)
@@ -27,6 +27,11 @@ namespace Figures
                 canva.Children.Add(line);
             }
             return NewPos;
+        }
+
+        public override void Remove(Canvas canva)
+        {
+            //canva.Children.Remove(this.fig)
         }
 
         public MyBrokenLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
