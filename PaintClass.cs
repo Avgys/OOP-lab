@@ -16,7 +16,7 @@ namespace DrawNamespace
         //public Point NewPos;
         public Point ImPos;
 
-        public AbstractFigure ImFigure;
+        AbstractFigure ImFigure;
         AbstractFigure ChosenFigure;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
@@ -56,10 +56,10 @@ namespace DrawNamespace
                     ImFigure.Remove(Canva);
                     ImFigure = null;
                 }
-                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border, ChosenFigure);
+                ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ChosenFigure);
                 //ChosenFigure.NewPos = NewPos;
-                ChosenFigure.PrevPos = PrevPos;
-                ChosenFigure.NewPos = pos;
+                //ChosenFigure.PrevPos = PrevPos;
+                //ChosenFigure.NewPos = pos;
                 PrevPos = ChosenFigure.Draw(Canva);
                 rewind.AddToFigureList(ChosenFigure);
                 
@@ -79,22 +79,15 @@ namespace DrawNamespace
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {
-                if (ImFigure != null)
-                {
-                    //Canva.Children.Remove(ImFigure.Figure);
-                    ImFigure.Remove(Canva);
-                }
-                ImFigure = CurrentFactory.GetFigure(thickness, fill, border, ImFigure) as SimpleFigure;
+                //if (ImFigure != null)
+                //{
+                //    //Canva.Children.Remove(ImFigure.Figure);
+                //    ImFigure.Remove(Canva);
+                //}
+                //ImFigure = ChosenFigure;
+                //ImFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ImFigure);
 
-                //ImFigure.NewPos = new Point { X = pos.X -1, Y = pos.Y -1 };
-                ImFigure.NewPos = pos;
-                ImFigure.PrevPos = PrevPos;
-                //ImFigure.Figure.IsHitTestVisible = false;
-                ImFigure.Draw(Canva);
-                //Canva.Focus();
-                //Canva.MouseLeftButtonDown += ;
-                //MouseButtonEventArgs
-                //(ImFigure as SimpleFigure).Figure.MouseLeftButtonUp += ;
+                //ImFigure.Draw(Canva);
             }
         }
 

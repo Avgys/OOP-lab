@@ -5,27 +5,14 @@ using System.Windows.Shapes;
 
 namespace Figures
 {
-    class MyBrokenLine : PointsFigure
+    class MyBrokenLine : CombinedFigure
     {
-        Line line;
+        private int Count;
         public override Point Draw(Canvas canva)
-        {
-            if (NewPos.X > 0 && NewPos.Y > 0)
-            {
-                line = new Line()
-                {
-                    X1 = PrevPos.X,
-                    X2 = NewPos.X,
-                    Y1 = PrevPos.Y,
-                    Y2 = NewPos.Y,
-                    StrokeStartLineCap = PenLineCap.Round,
-                    StrokeEndLineCap = PenLineCap.Round,
-                    StrokeThickness = Thickness,
-                    Stroke = BorderColor,
-                    Fill = FillColor
-                };
-                canva.Children.Add(line);
-            }
+        {            
+                //FigureArr[Count].PrevPos = PrevPos;
+                //FigureArr[Count].NewPos = NewPos;                
+            Add(canva);            
             return NewPos;
         }
 
@@ -34,8 +21,9 @@ namespace Figures
             //canva.Children.Remove(this.fig)
         }
 
-        public MyBrokenLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public MyBrokenLine(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
+            Count = 0;
         }
     }
 }

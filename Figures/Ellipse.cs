@@ -13,17 +13,7 @@ namespace Figures
     class MyEllipse : SimpleFigure
     {
         public override Point Draw(Canvas canva)
-        {
-            Figure = new Ellipse()
-            {
-                Width = Math.Abs(PrevPos.X - NewPos.X),
-                Height = Math.Abs(PrevPos.Y - NewPos.Y),                
-                StrokeThickness = Thickness,
-                Stroke = BorderColor,
-                Fill = FillColor,
-                IsHitTestVisible = false
-            };
-            //Figure.IsHitTestVisible
+        {            
             if (PrevPos.Y < NewPos.Y)
                 Canvas.SetTop(Figure, PrevPos.Y);
             else
@@ -32,13 +22,21 @@ namespace Figures
                 Canvas.SetLeft(Figure, PrevPos.X);
             else
                 Canvas.SetLeft(Figure, PrevPos.X - Figure.Width);
-            
-            canva.Children.Add(Figure);
+            Add(canva);
             return NullPos;
         }
 
-        public MyEllipse(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public MyEllipse(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
+            Figure = new Ellipse()
+            {
+                Width = Math.Abs(PrevPos.X - NewPos.X),
+                Height = Math.Abs(PrevPos.Y - NewPos.Y),
+                StrokeThickness = Thickness,
+                Stroke = BorderColor,
+                Fill = FillColor,
+                IsHitTestVisible = false
+            };
         }
     }
 }

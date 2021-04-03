@@ -21,29 +21,52 @@ namespace Paint_OOP_lab
 
         private void Canva_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            paint.SetPrevPos(e.GetPosition(Canva));
+            if (paint.PrevPos.X >= 0 && paint.PrevPos.Y >= 0)
+            {
+                //paint.SetNewPos(e.GetPosition(Canva));
+                SolidColorBrush LineBrush;
+                //if (SelectedLineColor.SelectedColor == null)
+                //{
+                LineBrush = Brushes.Black;
+                //}
+                //else
+                //    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
+                SolidColorBrush FillBrush;
+                //if (SelectedFillColor.SelectedColor == null)
+                //{
+                FillBrush = Brushes.White;
+                //}
+                //else
+                //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
+                paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
+                //paint.SetPrevPos(new Point() { X = -1, Y = -1 });
+            }
+            else 
+            {
+                paint.SetPrevPos(e.GetPosition(Canva));
+            }
         }
 
 
         private void Canva_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //paint.SetNewPos(e.GetPosition(Canva));
-            SolidColorBrush LineBrush;
-            //if (SelectedLineColor.SelectedColor == null)
-            //{
-            LineBrush = Brushes.Black;
-            //}
-            //else
-            //    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
-            SolidColorBrush FillBrush;
-            //if (SelectedFillColor.SelectedColor == null)
-            //{
-            FillBrush = Brushes.White;
-            //}
-            //else
-            //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
-            paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
-            //paint.SetPrevPos(new Point() { X = -1, Y = -1 });
+            ////paint.SetNewPos(e.GetPosition(Canva));
+            //SolidColorBrush LineBrush;
+            ////if (SelectedLineColor.SelectedColor == null)
+            ////{
+            //LineBrush = Brushes.Black;
+            ////}
+            ////else
+            ////    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
+            //SolidColorBrush FillBrush;
+            ////if (SelectedFillColor.SelectedColor == null)
+            ////{
+            //FillBrush = Brushes.White;
+            ////}
+            ////else
+            ////    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
+            //paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
+            ////paint.SetPrevPos(new Point() { X = -1, Y = -1 });
         }
 
         private void Canva_MouseMove(object sender, MouseEventArgs e)

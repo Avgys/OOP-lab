@@ -48,8 +48,10 @@ namespace Figures
     public class SimpleFigure : AbstractFigure
     {
         public Shape Figure;
-        public SimpleFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public SimpleFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
         {
+            PrevPos = prevPos;
+            NewPos = newPos;
         }
         
         public override void Remove(Canvas canva)
@@ -65,20 +67,42 @@ namespace Figures
 
     public class CombinedFigure : AbstractFigure
     {
-        public List<SimpleFigure> Figure;
-        public CombinedFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        protected List<SimpleFigure> FigureArr;
+        public CombinedFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
         {
+           FigureArr = new List<SimpleFigure>();
         }
+
+        public void RemoveFigure(SimpleFigure fig)
+        {
+            FigureArr.Remove(fig);
+        }
+
+        public void AddFigure(SimpleFigure fig)
+        {
+            FigureArr.Add(fig);
+        }
+
         public override void Remove(Canvas canva)
         {
-            for (int i = 0; i < Figure.Count;i++)
-            canva.Children.Remove(Figure[i].Figure);
+            for (int i = 0; i < FigureArr.Count;i++)
+            canva.Children.Remove(FigureArr[i].Figure);
+        }
+
+        public override void Add(Canvas canva)
+        {
+            for (int i = FigureArr.Count - 1; i >= 0; i--)
+            {
+                if (canva.Children.Contains(FigureArr[i].Figure))
+                break;
+                canva.Children.Add(FigureArr[i].Figure);
+            }
         }
     }
 
     public class PointsFigure : AbstractFigure{
         public List<Point> PointArray;
-        public PointsFigure(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public PointsFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
         {
         }
     }

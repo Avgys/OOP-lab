@@ -7,11 +7,7 @@ namespace Figures
 {
     class MyLine : SimpleFigure
     {
-        public MyLine(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
-        {
-        }
-
-        public override Point Draw(Canvas canva)
+        public MyLine(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Line()
             {
@@ -26,6 +22,10 @@ namespace Figures
                 Fill = FillColor,
                 IsHitTestVisible = false
             };
+        }
+
+        public override Point Draw(Canvas canva)
+        {            
             Add(canva);
             return NullPos;
         }        

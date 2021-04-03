@@ -36,7 +36,6 @@ namespace DrawNamespace
             }
         }
 
-
         public void Forward()
         {
             if (FigureList.Count > CurrStep + 1) { 

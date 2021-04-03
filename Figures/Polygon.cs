@@ -10,7 +10,7 @@ namespace Figures
         Polygon polygon;
         private PointCollection pointCollection;
 
-        public MyPolygon(double thickness, Brush fill, Brush border) : base(thickness, fill, border)
+        public MyPolygon(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
         }       
 
