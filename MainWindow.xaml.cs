@@ -34,7 +34,7 @@ namespace Paint_OOP_lab
                 SolidColorBrush FillBrush;
                 //if (SelectedFillColor.SelectedColor == null)
                 //{
-                FillBrush = Brushes.White;
+                FillBrush = Brushes.OrangeRed;
                 //}
                 //else
                 //    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
@@ -94,6 +94,7 @@ namespace Paint_OOP_lab
 
         private void Canva_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+            paint.ClearPos();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -111,11 +112,13 @@ namespace Paint_OOP_lab
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            paint.ClearPos();
             paint.rewind.Backward();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            paint.ClearPos();
             paint.rewind.RemoveAll();
         }
 

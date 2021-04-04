@@ -23,6 +23,11 @@ namespace Figures
             return NullPos;
         }
 
+        public override AbstractFigure GetCopy()
+        {
+            return new MyRectangle(Thickness, FillColor, BorderColor, PrevPos, NewPos);
+        }
+
         public MyRectangle(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Rectangle()

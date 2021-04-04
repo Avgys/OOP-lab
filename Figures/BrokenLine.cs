@@ -1,29 +1,66 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
+
+using Factory;
 
 namespace Figures
 {
-    class MyBrokenLine : CombinedFigure
+    class MyBrokenLine : PointsFigure
     {
-        private int Count;
+        List<SimpleFigure> FigureArr;
         public override Point Draw(Canvas canva)
-        {            
-                //FigureArr[Count].PrevPos = PrevPos;
-                //FigureArr[Count].NewPos = NewPos;                
-            Add(canva);            
-            return NewPos;
+        {
+            //FigureArr[Count].PrevPos = PrevPos;
+            //FigureArr[Count].NewPos = NewPos;
+            PointArray.Add(FigureArr[FigureArr.Count - 1].NewPos);
+            Add(canva);
+            return FigureArr[FigureArr.Count-1].NewPos;
+        }
+
+        public void AddFigure(SimpleFigure fig)
+        {
+            FigureArr.Add(fig);
+        }
+
+        public void RemoveFigure(SimpleFigure fig)
+        {
+            FigureArr.Remove(fig);
+        }
+
+        public override void Add(Canvas canva)
+        {
+            for (int i = FigureArr.Count - 1; i >= 0; i--)
+            {
+                if (canva.Children.Contains(FigureArr[i].Figure))
+                    break;
+                canva.Children.Add(FigureArr[i].Figure);
+            }
         }
 
         public override void Remove(Canvas canva)
         {
-            //canva.Children.Remove(this.fig)
+            for (int i = 0; i < FigureArr.Count; i++)
+                canva.Children.Remove(FigureArr[i].Figure);
+        }
+
+        public override AbstractFigure GetCopy()
+        {
+            
+            var temp = new MyBrokenLine(Thickness, FillColor, BorderColor, PrevPos, NewPos);
+            var Factory = new BrokenLineFactory();
+            for (int i = 0; i < this.FigureArr.Count; i++)
+            {
+                temp = Factory.GetFigure(Thickness, FillColor, BorderColor, FigureArr[i].PrevPos, FigureArr[i].NewPos, temp) as MyBrokenLine;
+            }
+            //(figure as MyBrokenLine).AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
+            return temp;
         }
 
         public MyBrokenLine(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
-            Count = 0;
+            FigureArr = new List<SimpleFigure>();
         }
     }
 }

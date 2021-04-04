@@ -26,6 +26,11 @@ namespace Figures
             return NullPos;
         }
 
+        public override AbstractFigure GetCopy()
+        {
+            return new MyEllipse(Thickness, FillColor, BorderColor, PrevPos, NewPos);
+        }
+
         public MyEllipse(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Ellipse()

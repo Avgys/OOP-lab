@@ -16,9 +16,8 @@
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <!--<xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="296,10,0,30" HorizontalAlignment="Left" Width="23" Height="23"/>-->
-        <!--<xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>-->
-        <!--<xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>-->
+        <xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="296,10,0,30" HorizontalAlignment="Left" Width="23" Height="23"/>
+        <xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>
         <Button x:Name="UndoButton" Content="Undo" HorizontalAlignment="Left" Margin="10,288,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click" Height="20"/>
         <Button x:Name="ClearAllButton" Content="Clear all" HorizontalAlignment="Left" Margin="10,313,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click_1" Height="20"/>
         <Button x:Name="Line" Content="Line" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Line_Click"/>

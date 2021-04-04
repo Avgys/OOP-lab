@@ -18,6 +18,7 @@ namespace DrawNamespace
 
         AbstractFigure ImFigure;
         AbstractFigure ChosenFigure;
+        AbstractFigure TemplateForIm;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
 
@@ -40,6 +41,12 @@ namespace DrawNamespace
             //NewPos.Y = -1;
             //ChosenFigure = CurrentFactory.GetFigure();
             ChosenFigure = null;
+            TemplateForIm = null;
+            if (ImFigure != null)
+            {
+                ImFigure.Remove(Canva);
+                ImFigure = null;
+            }
         }
 
         public void SetFactory(FiguresFactory factory)
@@ -57,9 +64,7 @@ namespace DrawNamespace
                     ImFigure = null;
                 }
                 ChosenFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ChosenFigure);
-                //ChosenFigure.NewPos = NewPos;
-                //ChosenFigure.PrevPos = PrevPos;
-                //ChosenFigure.NewPos = pos;
+                ChosenFigure.NewPos = pos;
                 PrevPos = ChosenFigure.Draw(Canva);
                 rewind.AddToFigureList(ChosenFigure);
                 
@@ -79,15 +84,24 @@ namespace DrawNamespace
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {
-                //if (ImFigure != null)
-                //{
-                //    //Canva.Children.Remove(ImFigure.Figure);
-                //    ImFigure.Remove(Canva);
-                //}
-                //ImFigure = ChosenFigure;
-                //ImFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ImFigure);
-
-                //ImFigure.Draw(Canva);
+                if (ImFigure != null)
+                {
+                    ImFigure.Remove(Canva);
+                    if (ChosenFigure != null)
+                    {
+                        ImFigure = ChosenFigure.GetCopy();
+                        if (ChosenFigure.Equals(ImFigure))
+                        {
+                            MessageBox.Show("Not Copy");
+                        }
+                    }
+                    else
+                    {
+                        ImFigure = null;
+                    }
+                }
+                ImFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ImFigure);                 
+                ImFigure.Draw(Canva);
             }
         }
 

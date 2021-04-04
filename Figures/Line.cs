@@ -24,6 +24,11 @@ namespace Figures
             };
         }
 
+        public override AbstractFigure GetCopy()
+        {
+            return new MyLine(Thickness, FillColor, BorderColor, PrevPos, NewPos);
+        }
+
         public override Point Draw(Canvas canva)
         {            
             Add(canva);

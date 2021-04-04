@@ -25,6 +25,7 @@ namespace Figures
             return NullPos;
         }
 
+        
         public virtual void Remove(Canvas canva)
         {
             //canva.Children.Remove(this)
@@ -33,6 +34,12 @@ namespace Figures
         public virtual void Add(Canvas canva)
         {
             //canva.Children.Remove(this)
+        }
+
+        public virtual AbstractFigure GetCopy()
+        {
+            //canva.Children.Remove(this)
+            return null;
         }
 
         public AbstractFigure(double thickness, Brush fill, Brush border)
@@ -57,7 +64,7 @@ namespace Figures
         public override void Remove(Canvas canva)
         {
             canva.Children.Remove(Figure);
-        }
+        }        
 
         public override void Add(Canvas canva)
         {
@@ -76,6 +83,11 @@ namespace Figures
         public void RemoveFigure(SimpleFigure fig)
         {
             FigureArr.Remove(fig);
+        }
+
+        public void RemoveLastFigure()
+        {            
+            FigureArr.Remove(FigureArr.Last());
         }
 
         public void AddFigure(SimpleFigure fig)
@@ -102,9 +114,32 @@ namespace Figures
 
     public class PointsFigure : AbstractFigure{
         public List<Point> PointArray;
-        public PointsFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
+        public Shape Figure;
+        public PointsFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border) {
+            PointArray = new List<Point>();
+            PointArray.Add(prevPos);
+            PointArray.Add(newPos);
+        }
+
+        public override void Remove(Canvas canva)
         {
+            canva.Children.Remove(Figure);
+        }
+
+        public override void Add(Canvas canva)
+        {
+            if (!canva.Children.Contains(Figure))
+                canva.Children.Add(Figure);
+        }
+
+        public virtual void AddPoint(Point pos)
+        {
+            PointArray.Add(pos);
+        }
+
+        public virtual void RemovePoint(Point pos)
+        {
+            PointArray.Remove(pos);
         }
     }
-
 }

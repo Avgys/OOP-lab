@@ -37,17 +37,26 @@ namespace Factory
     {
         public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
         {
-            if (figure == null)
+            try
             {
-                var temp = new MyBrokenLine(thickness, fill, border, prevPos, newPos);
-                temp.AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
-                return temp;
+                if (figure == null || !(figure is MyBrokenLine))
+                {
+                    var temp = new MyBrokenLine(thickness, fill, border, prevPos, newPos);
+                    temp.AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
+                    return temp;
+                }
+                else
+                {                    
+                    (figure as MyBrokenLine).AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
+                    return figure;                    
+                }
             }
-            else
-            { 
-                (figure as CombinedFigure).AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
-                return figure;
+            catch
+            {
+                MessageBox.Show("BrokenLineFactory Error");
+                return null;
             }
+            
         }
     }
 
@@ -55,13 +64,23 @@ namespace Factory
     {
         public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
         {
-            if (figure == null)
+            try
             {
-                return new MyPolygon(thickness, fill, border, prevPos, newPos);
+                if (figure == null || !(figure is MyPolygon))
+                {
+                    var temp = new MyPolygon(thickness, fill, border, prevPos, newPos);
+                    return temp;
+                }
+                else
+                {
+                    (figure as MyPolygon).AddPoint(newPos);
+                    return figure;
+                }
             }
-            else
+            catch
             {
-                return figure;
+                MessageBox.Show("PolygonFactory Error");
+                return null;
             }
         }
     }

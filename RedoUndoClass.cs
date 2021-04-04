@@ -18,21 +18,26 @@ namespace DrawNamespace
             {
                 FigureList.RemoveRange(CurrStep + 1, FigureList.Count -(CurrStep + 1));                
             }
+            if (!FigureList.Contains(figure))
+            {
                 FigureList.Add(figure);
                 CurrStep++;
+            }
         }
 
         public void Backward()
         {            
             if (FigureList.Count >= 1 && CurrStep >= 0)
             {
-                if (FigureList[CurrStep] is SimpleFigure)
-                {
-                    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
-                    //Canva.Children.Remove(figure.Figure);
-                    figure.Remove(Canva);
-                    CurrStep--;
-                }
+                //if (FigureList[CurrStep] is SimpleFigure)
+                //{
+                //    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
+                //    //Canva.Children.Remove(figure.Figure);
+                //    figure.Remove(Canva);
+                //    CurrStep--;
+                //}
+                FigureList[CurrStep].Remove(Canva);
+                CurrStep--;
             }
         }
 
@@ -40,11 +45,8 @@ namespace DrawNamespace
         {
             if (FigureList.Count > CurrStep + 1) { 
                 ++CurrStep;
-                if (FigureList[CurrStep] is SimpleFigure) {
-                    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
-                    //Canva.Children.Add(figure.Figure);
-                    figure.Add(Canva);
-                }
+                //Canva.Children.Add(figure.Figure);
+                FigureList[CurrStep].Add(Canva);
             }
         }
 
