@@ -12,11 +12,9 @@ namespace Figures
         List<SimpleFigure> FigureArr;
         public override Point Draw(Canvas canva)
         {
-            //FigureArr[Count].PrevPos = PrevPos;
-            //FigureArr[Count].NewPos = NewPos;
-            PointArray.Add(FigureArr[FigureArr.Count - 1].NewPos);
+            PointArray.Add(FigureArr[^1].NewPos);
             Add(canva);
-            return FigureArr[FigureArr.Count-1].NewPos;
+            return FigureArr[^1].NewPos;
         }
 
         public void AddFigure(SimpleFigure fig)
@@ -47,14 +45,12 @@ namespace Figures
 
         public override AbstractFigure GetCopy()
         {
-            
             var temp = new MyBrokenLine(Thickness, FillColor, BorderColor, PrevPos, NewPos);
             var Factory = new BrokenLineFactory();
             for (int i = 0; i < this.FigureArr.Count; i++)
             {
                 temp = Factory.GetFigure(Thickness, FillColor, BorderColor, FigureArr[i].PrevPos, FigureArr[i].NewPos, temp) as MyBrokenLine;
             }
-            //(figure as MyBrokenLine).AddFigure(new MyLine(thickness, fill, border, prevPos, newPos));
             return temp;
         }
 

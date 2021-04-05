@@ -8,7 +8,6 @@ namespace Figures
 {
     class MyPolygon : PointsFigure
     {
-        //private PointCollection pointCollection;
         public MyPolygon(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Polygon()
@@ -19,7 +18,6 @@ namespace Figures
                 Stroke = BorderColor,
                 Fill = FillColor,
                 IsHitTestVisible = false
-
             };
             (Figure as Polygon).Points.Add(prevPos);
             (Figure as Polygon).Points.Add(newPos);
@@ -45,7 +43,6 @@ namespace Figures
 
         public override AbstractFigure GetCopy()
         {
-
             var temp = new MyPolygon(Thickness, FillColor, BorderColor, this.PointArray[0], this.PointArray[1]);
             var Factory = new PolygonFactory();
             for (int i =2; i < this.PointArray.Count; i++)

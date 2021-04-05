@@ -1,7 +1,6 @@
 ﻿using Figures;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace DrawNamespace
@@ -9,39 +8,25 @@ namespace DrawNamespace
     using Factory;
     public class Paint
     {
-        //private List<AbstractFigure> FigureList;
         Canvas Canva;
 
         public Point PrevPos;
-        //public Point NewPos;
         public Point ImPos;
 
         AbstractFigure ImFigure;
         AbstractFigure ChosenFigure;
-        AbstractFigure TemplateForIm;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
 
         public void SetPrevPos(Point pos)
         {
-            
             PrevPos = pos;
         }
-
-        //public void SetNewPos(Point pos)
-        //{
-        //    NewPos = pos;
-        //}        
-
         public void ClearPos()
         {
             PrevPos.X = -1;
             PrevPos.Y = -1;
-            //NewPos.X = -1;
-            //NewPos.Y = -1;
-            //ChosenFigure = CurrentFactory.GetFigure();
             ChosenFigure = null;
-            TemplateForIm = null;
             if (ImFigure != null)
             {
                 ImFigure.Remove(Canva);
@@ -67,16 +52,6 @@ namespace DrawNamespace
                 ChosenFigure.NewPos = pos;
                 PrevPos = ChosenFigure.Draw(Canva);
                 rewind.AddToFigureList(ChosenFigure);
-                
-                //if (ImFigure != null)
-                //{
-                //    //Canva.Children.Remove(ImFigure);
-                //    ImFigure.Remove(Canva);
-                //    ChosenFigure = ImFigure;
-                //      PrevPos = ChosenFigure.Draw(Canva);
-                //    rewind.AddToFigureList(ChosenFigure);
-                //    ImFigure = null;
-                //}
             }
         }
 
@@ -89,8 +64,8 @@ namespace DrawNamespace
                     ImFigure.Remove(Canva);
                     if (ChosenFigure != null)
                     {
-                        ImFigure = ChosenFigure.GetCopy();
-                        if (ChosenFigure.Equals(ImFigure))
+                        ImFigure = ChosenFigure.GetCopy(); // Копирую уже нарисованную часть фигуры,
+                        if (ChosenFigure.Equals(ImFigure)) // чтобы получить фигуру дорисанную на одну точку больше для предпросмотра
                         {
                             MessageBox.Show("Not Copy");
                         }
@@ -111,10 +86,8 @@ namespace DrawNamespace
         {
             CurrentFactory = new LineFactory();
             Canva = canvaToDraw;
-            //NewPos = new Point() { X = -1, Y = -1 };
             PrevPos = new Point() { X = -1, Y = -1 };
             rewind = new RedoUndoClass(Canva);
         }
-        //~Paint();
     }
 }

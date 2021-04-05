@@ -29,13 +29,6 @@ namespace DrawNamespace
         {            
             if (FigureList.Count >= 1 && CurrStep >= 0)
             {
-                //if (FigureList[CurrStep] is SimpleFigure)
-                //{
-                //    SimpleFigure figure = FigureList[CurrStep] as SimpleFigure;
-                //    //Canva.Children.Remove(figure.Figure);
-                //    figure.Remove(Canva);
-                //    CurrStep--;
-                //}
                 FigureList[CurrStep].Remove(Canva);
                 CurrStep--;
             }
@@ -45,7 +38,6 @@ namespace DrawNamespace
         {
             if (FigureList.Count > CurrStep + 1) { 
                 ++CurrStep;
-                //Canva.Children.Add(figure.Figure);
                 FigureList[CurrStep].Add(Canva);
             }
         }
