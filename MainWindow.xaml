@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
+        Title="MainWindow" Height="466" Width="800" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="61*"/>
@@ -16,8 +16,8 @@
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="296,10,0,30" HorizontalAlignment="Left" Width="23" Height="23"/>
-        <xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,348,30" HorizontalAlignment="Right" Width="24" Height="23"/>
+        <xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="167,10,0,33" HorizontalAlignment="Left" Width="20" Height="23"/>
+        <xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,457,33" HorizontalAlignment="Right" Width="22" Height="23"/>
         <Button x:Name="UndoButton" Content="Undo" HorizontalAlignment="Left" Margin="10,288,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click" Height="20"/>
         <Button x:Name="ClearAllButton" Content="Clear all" HorizontalAlignment="Left" Margin="10,313,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click_1" Height="20"/>
         <Button x:Name="Line" Content="Line" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Line_Click"/>
@@ -27,8 +27,6 @@
         <Button x:Name="Ellipes" Content="Ellipse" HorizontalAlignment="Left" Margin="10,119,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Ellipes_Click"/>
         <Button x:Name="Polygon" Content="Polygon" HorizontalAlignment="Left" Margin="10,159,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Polygon_Click"/>
         <TextBox x:Name="StrokeWidth" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="113,10,0,0" TextWrapping="Wrap" Text="2,2" VerticalAlignment="Top" Width="30"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="174,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="56" d:IsHidden="True"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="235,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="56" d:IsHidden="True"/>
         <Menu HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="87">
             <MenuItem x:Name="File" Header="File" Height="19">
                 <MenuItem x:Name="LoadFile" Header="LoadFile" Height="19" Margin="0,0,-2,0"/>
@@ -41,7 +39,6 @@
                 <MenuItem Header="UnloadPlugin" Height="21" Margin="0,0,7,0"/>
             </MenuItem>
         </Menu>
-        <Label Content="Border" Grid.Column="1" HorizontalAlignment="Left" Margin="253,10,0,0" VerticalAlignment="Top" Height="26" Width="46"/>
         <Label Content="Fill" Grid.Column="2" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Height="26" Width="25"/>
         <Button x:Name="ClearAllButton_Copy" Content="Return all" HorizontalAlignment="Left" Margin="10,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="ClearAllButton_Copy_Click" Height="20"/>
         <Canvas x:Name="Canva" Grid.Column="1" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" PreviewMouseMove="Canva_MouseMove" Margin="0,63,0,0" Grid.RowSpan="2" Background="White" PreviewMouseDown="Canva_PreviewMouseDown"/>
