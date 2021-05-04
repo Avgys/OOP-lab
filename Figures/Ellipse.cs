@@ -27,15 +27,15 @@ namespace Figures
             return new MyEllipse(Thickness, FillColor, BorderColor, PrevPos, NewPos);
         }
 
-        public MyEllipse(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        public MyEllipse(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Ellipse()
             {
                 Width = Math.Abs(PrevPos.X - NewPos.X),
                 Height = Math.Abs(PrevPos.Y - NewPos.Y),
                 StrokeThickness = Thickness,
-                Stroke = BorderColor,
-                Fill = FillColor,
+                Stroke = new SolidColorBrush(BorderColor),
+                Fill = new SolidColorBrush(FillColor),
                 IsHitTestVisible = false
             };
         }

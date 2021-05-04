@@ -28,15 +28,15 @@ namespace Figures
             return new MyRectangle(Thickness, FillColor, BorderColor, PrevPos, NewPos);
         }
 
-        public MyRectangle(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        public MyRectangle(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Rectangle()
             {
                 Height = Math.Abs(prevPos.Y - newPos.Y),
                 Width = Math.Abs(prevPos.X - newPos.X),
                 StrokeThickness = thickness,
-                Stroke = border,
-                Fill = fill,
+                Stroke = new SolidColorBrush(BorderColor),
+                Fill = new SolidColorBrush(FillColor),
                 IsHitTestVisible = false
             };
         }

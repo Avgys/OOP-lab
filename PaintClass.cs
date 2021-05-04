@@ -1,11 +1,15 @@
 ﻿using Figures;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Text.Json;
 
 namespace DrawNamespace
 {
     using Factory;
+    using System.Collections.Generic;
+
     public class Paint
     {
         Canvas Canva;
@@ -17,6 +21,7 @@ namespace DrawNamespace
         AbstractFigure ChosenFigure;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
+        //public Serializer 
 
         public void SetPrevPos(Point pos)
         {
@@ -39,7 +44,57 @@ namespace DrawNamespace
             CurrentFactory = factory;
         }
 
-        public void DrawCurrentFigure(double thickness, Brush fill, Brush border, Point pos)
+        string json;
+
+        class Person
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+
+        public string Deserialize()
+        {
+
+            rewind.RemoveAll();
+            string[] arr = json.Split("/n");
+            for(int i = 0; i < arr.Length; i++)
+            {
+                var fig = JsonSerializer.Deserialize<MyLine>(arr[i]);
+                rewind.AddToFigureList(fig);
+            }
+
+            //rewind.FigureList = JsonSerializer.Deserialize<List<AbstractFigure>>(json);            
+            return json;
+        }
+
+        public string Serialize()
+        {
+            //var item = rewind.FigureList[0].GetType();
+            //json = "";
+            //json = JsonSerializer.Serialize<AbstractFigure>(figureList[0]);
+            //for (int i = 0; i < rewind.FigureList.Count; i++)
+            //{
+            //    MyLine fig = rewind.FigureList[i] as MyLine;
+            //    //fig.BorderColor;
+            //    json += JsonSerializer.Serialize<AbstractFigure>(fig);
+            //    var nfig = JsonSerializer.Deserialize<AbstractFigure>(json);
+            //    json += "/n";
+            //}
+
+            var fig = typeof(AbstractFigure);
+            //var fign = new AbstractFigure(2, Color.FromRgb(255, 255, 255), Color.FromRgb(0, 0, 0), PrevPos, new Point() { X = 2, Y = 2});
+            //var fign = rewind.FigureList[0] as MyBrokenLine;
+            //json += JsonSerializer.Serialize<MyBrokenLine>(fign);
+            //MyBrokenLine nfig = JsonSerializer.Deserialize<MyBrokenLine>(json);
+            json = "";
+            var fign = rewind.FigureList[0];
+            var type = fign.GetType();
+            json += JsonSerializer.Serialize(fign, fign.GetType());
+            AbstractFigure nfig = JsonSerializer.Deserialize(json, type) as AbstractFigure;
+            return json;
+        }
+
+        public void DrawCurrentFigure(double thickness, Color fill, Color border, Point pos)
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {
@@ -55,7 +110,7 @@ namespace DrawNamespace
             }
         }
 
-        public void Prerender(double thickness, Brush fill, Brush border, Point pos)
+        public void Prerender(double thickness, Color fill, Color border, Point pos)
         {
             if (PrevPos.X >= 0 && PrevPos.Y >= 0)
             {

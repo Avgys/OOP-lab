@@ -4,7 +4,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Threading;
-//using System
+using System.Globalization;
+using System.IO;
+using Microsoft.Win32;
 
 namespace Paint_OOP_lab
 {
@@ -23,21 +25,21 @@ namespace Paint_OOP_lab
         {
             if (paint.PrevPos.X >= 0 && paint.PrevPos.Y >= 0)
             {
-                SolidColorBrush LineBrush;
+                Color LineBrush;
                 if (SelectedLineColor.SelectedColor == null)
                 {
-                    LineBrush = Brushes.Black;
+                    LineBrush = Color.FromRgb(0, 0, 0); 
                 }
                 else
-                    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
-                SolidColorBrush FillBrush;
+                    LineBrush = (Color)SelectedLineColor.SelectedColor;
+                Color FillBrush;
                 if (SelectedFillColor.SelectedColor == null)
                 {
-                    FillBrush = Brushes.OrangeRed;
+                    FillBrush = Color.FromRgb(255, 255, 255);
                 }
                 else
-                    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
-                paint.DrawCurrentFigure(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
+                    FillBrush =  (Color)SelectedFillColor.SelectedColor;
+                paint.DrawCurrentFigure(double.Parse(StrokeWidth.Text, CultureInfo.InvariantCulture), FillBrush, LineBrush, e.GetPosition(Canva));
                 
             }
             else 
@@ -55,21 +57,22 @@ namespace Paint_OOP_lab
         {
             if (paint.PrevPos.X >= 0 && paint.PrevPos.Y >= 0)
             {
-                SolidColorBrush LineBrush;
+                Color LineBrush;
                 if (SelectedLineColor.SelectedColor == null)
                 {
-                    LineBrush = Brushes.Black;
+                    LineBrush = Color.FromRgb(0, 0, 0);
                 }
                 else
-                    LineBrush = new SolidColorBrush((Color)SelectedLineColor.SelectedColor);
-                SolidColorBrush FillBrush;
+                    LineBrush = (Color)SelectedLineColor.SelectedColor;
+                Color FillBrush;
                 if (SelectedFillColor.SelectedColor == null)
                 {
-                    FillBrush = Brushes.White;
+                    FillBrush = Color.FromRgb(255, 255, 255);
                 }
                 else
-                    FillBrush = new SolidColorBrush((Color)SelectedFillColor.SelectedColor);
-                paint.Prerender(Convert.ToDouble(StrokeWidth.Text), FillBrush, LineBrush, e.GetPosition(Canva));
+                    FillBrush = (Color)SelectedFillColor.SelectedColor;
+
+                paint.Prerender(double.Parse(StrokeWidth.Text, CultureInfo.InvariantCulture), FillBrush, LineBrush, e.GetPosition(Canva));
             }
         }
 
@@ -144,6 +147,29 @@ namespace Paint_OOP_lab
 
         private void Canva_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+        }             
+
+        private void Deserialize_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+            //    string str = System.IO.File.ReadAllText(openFileDialog.FileName);
+            //    paint.Deserialize(str);
+            //}
+            paint.Deserialize();
+        }
+
+        private void Serialize_Click(object sender, RoutedEventArgs e)
+        {
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "json (*.json)|*.json";
+            //if (saveFileDialog.ShowDialog() == true)
+            //{
+            //    //FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
+            string str = paint.Serialize();
+            //    System.IO.File.WriteAllText(saveFileDialog.FileName, str);
+            //}
         }
     }
 }

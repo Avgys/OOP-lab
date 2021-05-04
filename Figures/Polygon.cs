@@ -8,15 +8,15 @@ namespace Figures
 {
     class MyPolygon : PointsFigure
     {
-        public MyPolygon(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        public MyPolygon(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Polygon()
             {                
                 StrokeStartLineCap = PenLineCap.Round,
                 StrokeEndLineCap = PenLineCap.Round,
                 StrokeThickness = Thickness,
-                Stroke = BorderColor,
-                Fill = FillColor,
+                Stroke = new SolidColorBrush(BorderColor),
+                Fill = new SolidColorBrush(FillColor),
                 IsHitTestVisible = false
             };
             (Figure as Polygon).Points.Add(prevPos);

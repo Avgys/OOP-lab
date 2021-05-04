@@ -7,7 +7,12 @@ namespace Figures
 {
     class MyLine : SimpleFigure
     {
-        public MyLine(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        public MyLine()
+        {
+
+        }
+
+        public MyLine(double Thickness, Color FillColor, Color BorderColor, Point PrevPos, Point NewPos) : base(Thickness, FillColor, BorderColor, PrevPos, NewPos)
         {
             Figure = new Line()
             {
@@ -18,8 +23,8 @@ namespace Figures
                 StrokeStartLineCap = PenLineCap.Round,
                 StrokeEndLineCap = PenLineCap.Round,
                 StrokeThickness = Thickness,
-                Stroke = BorderColor,
-                Fill = FillColor,
+                Stroke = new SolidColorBrush(BorderColor),
+                Fill = new SolidColorBrush(FillColor),
                 IsHitTestVisible = false
             };
         }

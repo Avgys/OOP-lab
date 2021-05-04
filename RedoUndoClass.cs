@@ -9,7 +9,7 @@ namespace DrawNamespace
     public class RedoUndoClass
     {
         private int CurrStep;
-        private List<AbstractFigure> FigureList;
+        public List<AbstractFigure> FigureList { get; set; }
         Canvas Canva;
 
         public void AddToFigureList(AbstractFigure figure)

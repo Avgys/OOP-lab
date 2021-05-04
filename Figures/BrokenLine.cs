@@ -9,7 +9,19 @@ namespace Figures
 {
     class MyBrokenLine : PointsFigure
     {
+
         List<SimpleFigure> FigureArr;
+
+        public MyBrokenLine()
+        {
+            
+        }
+
+        public MyBrokenLine(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        {
+            FigureArr = new List<SimpleFigure>();
+        }
+
         public override Point Draw(Canvas canva)
         {
             PointArray.Add(FigureArr[^1].NewPos);
@@ -54,9 +66,6 @@ namespace Figures
             return temp;
         }
 
-        public MyBrokenLine(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
-        {
-            FigureArr = new List<SimpleFigure>();
-        }
+        
     }
 }

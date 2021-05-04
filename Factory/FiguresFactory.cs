@@ -6,12 +6,12 @@ namespace Factory
     using Figures;
     public abstract class FiguresFactory
     {
-        public abstract AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure);
+        public abstract AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure);
     }
 
     public class LineFactory : FiguresFactory
     {
-        public override SimpleFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override SimpleFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             return new MyLine(thickness, fill, border, prevPos, newPos);
         }
@@ -19,7 +19,7 @@ namespace Factory
 
     public class EllipseFactory : FiguresFactory
     {
-        public override SimpleFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override SimpleFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             return new MyEllipse(thickness, fill, border, prevPos, newPos);
         }
@@ -27,7 +27,7 @@ namespace Factory
 
     public class RectangleFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             return new MyRectangle(thickness, fill, border, prevPos, newPos);
         }
@@ -35,7 +35,7 @@ namespace Factory
 
     public class BrokenLineFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             try
             {
@@ -55,14 +55,13 @@ namespace Factory
             {
                 MessageBox.Show("BrokenLineFactory Error");
                 return null;
-            }
-            
+            }            
         }
     }
 
     public class PolygonFactory : FiguresFactory
     {
-        public override AbstractFigure GetFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             try
             {

@@ -7,17 +7,32 @@ using System.Windows.Controls;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Figures
 {
-    public class AbstractFigure
+
+    interface ISerializable {
+        public string Serialize();
+    }
+
+
+    //{"Thickness":22,"BorderColor":{"ColorContext":null,"A":255,"R":0,"G":0,"B":0,"ScA":1,"ScR":0,"ScG":0,"ScB":0},"FillColor":{ "ColorContext":null,"A":255,"R":255,"G":255,"B":255,"ScA":1,"ScR":1,"ScG":1,"ScB":1},"PrevPos":{ "X":259.08000000000004,"Y":113},"NewPos":{ "X":611.08,"Y":212}}
+
+    public class AbstractFigure 
     {
-        //public Canvas FigureArea;
-        public Point PrevPos;
-        public Point NewPos;
-        protected double Thickness;
-        protected Brush BorderColor;
-        protected Brush FillColor;
+        //public Canvas FigureArea;        
+        [JsonPropertyName("Thickness")]
+        public double Thickness { get; set; }
+        [JsonPropertyName("FillColor")]
+        public Color FillColor { get; set; }
+        [JsonPropertyName("BorderColor")]
+        public Color BorderColor { get; set; }
+        [JsonPropertyName("PrevPos")]
+        public Point PrevPos { get; set; }
+        [JsonPropertyName("NewPos")]
+        public Point NewPos { get; set; }
         static protected Point NullPos;
 
         public virtual Point Draw(Canvas canva)
@@ -25,7 +40,6 @@ namespace Figures
             return NullPos;
         }
 
-        
         public virtual void Remove(Canvas canva)
         {
         }
@@ -39,23 +53,34 @@ namespace Figures
             return null;
         }
 
-        public AbstractFigure(double thickness, Brush fill, Brush border)
+        public AbstractFigure(double Thickness, Color FillColor, Color BorderColor,  Point PrevPos, Point NewPos)
         {
             NullPos.X = -1;
             NullPos.Y = -1;
-            Thickness = thickness;
-            FillColor = fill;
-            BorderColor = border;
+            this.Thickness = Thickness;
+            this.FillColor = FillColor;
+            this.BorderColor = BorderColor;
+        }
+
+        public AbstractFigure()
+        {
+
         }
     }
 
     public class SimpleFigure : AbstractFigure
     {
+        [JsonIgnore]
         public Shape Figure;
-        public SimpleFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
+        public SimpleFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             PrevPos = prevPos;
             NewPos = newPos;
+        }
+
+        public SimpleFigure()
+        {
+
         }
         
         public override void Remove(Canvas canva)
@@ -66,13 +91,13 @@ namespace Figures
         public override void Add(Canvas canva)
         {
             canva.Children.Add(Figure);
-        }
+        }        
     }
 
     //public class CombinedFigure : AbstractFigure //Not in use currently
     //{
     //    protected List<SimpleFigure> FigureArr;
-    //    public CombinedFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border)
+    //    public CombinedFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border)
     //    {
     //       FigureArr = new List<SimpleFigure>();
     //    }
@@ -109,10 +134,20 @@ namespace Figures
     //    }
     //}
 
-    public class PointsFigure : AbstractFigure{
-        protected List<Point> PointArray;
+    public class PointsFigure : AbstractFigure
+    {
+        [JsonPropertyName("PointArray")][JsonInclude]
+        public List<Point> PointArray { get; set; }
+        [JsonIgnore]
         protected Shape Figure;
-        public PointsFigure(double thickness, Brush fill, Brush border, Point prevPos, Point newPos) : base(thickness, fill, border) {
+
+        public PointsFigure()
+        {
+            
+        }
+
+        public PointsFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
+        {
             PointArray = new List<Point>
             {
                 prevPos,
