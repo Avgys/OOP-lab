@@ -12,7 +12,7 @@ namespace Figures
 
         }
 
-        public MyLine(double Thickness, Color FillColor, Color BorderColor, Point PrevPos, Point NewPos) : base(Thickness, FillColor, BorderColor, PrevPos, NewPos)
+        public MyLine(double thickness, Color fillColor, Color borderColor, Point prevPos, Point newPos) : base(thickness, fillColor, borderColor, prevPos, newPos)
         {
             Figure = new Line()
             {

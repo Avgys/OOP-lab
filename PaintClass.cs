@@ -91,6 +91,11 @@ namespace DrawNamespace
             var type = fign.GetType();
             json += JsonSerializer.Serialize(fign, fign.GetType());
             AbstractFigure nfig = JsonSerializer.Deserialize(json, type) as AbstractFigure;
+            rewind.RemoveAll();
+            fign = fign.GetCopy();
+            nfig = nfig.GetCopy();
+            nfig.Draw(Canva);
+            rewind.AddToFigureList(nfig);
             return json;
         }
 
