@@ -52,19 +52,27 @@ namespace DrawNamespace
             public int Age { get; set; }
         }
 
-        public string Deserialize()
+        public void Deserialize(string str)
         {
-
             rewind.RemoveAll();
-            string[] arr = json.Split("/n");
-            for(int i = 0; i < arr.Length; i++)
+            json = str;
+
+            string[] jsonRows = json.Split("\n");
+            string[] arrTypes = JsonSerializer.Deserialize(jsonRows[0], jsonRows.GetType()) as string[];
+
+            System.Type myType;
+
+            var FigureList = new List<AbstractFigure>();
+
+            for (int i = 0; i < arrTypes.Length; i++)
             {
-                var fig = JsonSerializer.Deserialize<MyLine>(arr[i]);
-                rewind.AddToFigureList(fig);
+                myType = System.Type.GetType(arrTypes[i], false, true);
+                AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure; 
+                FigureList.Add(nfig.GetCopy());
             }
 
-            //rewind.FigureList = JsonSerializer.Deserialize<List<AbstractFigure>>(json);            
-            return json;
+            rewind.FigureList = FigureList;
+            rewind.ReturnAll();   
         }
 
         public string Serialize()
@@ -85,36 +93,7 @@ namespace DrawNamespace
                 json += JsonSerializer.Serialize(rewind.FigureList[i], rewind.FigureList[i].GetType());
                 json += "\n";
             }
-
-            //json += JsonSerializer.Serialize(rewind.FigureList, rewind.FigureList.GetType());
-
-            //json = JsonSerializer.Serialize(rewind.FigureList[0], rewind.FigureList[0].GetType());
-
-            rewind.RemoveAll();
             
-            string[] jsonRows = json.Split("\n");
-
-            string[] arrTypes = JsonSerializer.Deserialize(jsonRows[0], jsonRows.GetType()) as string[];
-
-            System.Type myType;            
-
-            var FigureList = new List<AbstractFigure>();
-
-            for (int i = 0; i < arrTypes.Length; i++)
-            {
-                myType = System.Type.GetType(arrTypes[i], false, true);
-                AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i+1], myType) as AbstractFigure;
-                //FigureList[i] = (FigureList[i] as myType ).GetCopy();
-                FigureList.Add(nfig.GetCopy());
-            }
-
-            rewind.FigureList = FigureList;
-            rewind.ReturnAll();
-
-            //AbstractFigure nfig = JsonSerializer.Deserialize(json, type) as AbstractFigure;
-
-            //nfig.Draw(Canva);
-            //rewind.AddToFigureList(nfig);
             return json;
         }
 

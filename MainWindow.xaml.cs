@@ -151,25 +151,25 @@ namespace Paint_OOP_lab
 
         private void Deserialize_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    string str = System.IO.File.ReadAllText(openFileDialog.FileName);
-            //    paint.Deserialize(str);
-            //}
-            paint.Deserialize();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "json (*.json)|*.json";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string str = System.IO.File.ReadAllText(openFileDialog.FileName);
+                paint.Deserialize(str);
+            }
         }
 
         private void Serialize_Click(object sender, RoutedEventArgs e)
         {
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "json (*.json)|*.json";
-            //if (saveFileDialog.ShowDialog() == true)
-            //{
-            //    //FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
-            string str = paint.Serialize();
-            //    System.IO.File.WriteAllText(saveFileDialog.FileName, str);
-            //}
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "json (*.json)|*.json";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
+                string str = paint.Serialize();
+                System.IO.File.WriteAllText(saveFileDialog.FileName, str);
+            }
         }
     }
 }
