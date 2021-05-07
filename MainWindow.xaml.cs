@@ -166,7 +166,7 @@ namespace Paint_OOP_lab
             saveFileDialog.Filter = "json (*.json)|*.json";
             if (saveFileDialog.ShowDialog() == true)
             {
-                FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
+                //FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
                 string str = paint.Serialize();
                 System.IO.File.WriteAllText(saveFileDialog.FileName, str);
             }

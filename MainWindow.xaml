@@ -27,7 +27,7 @@
         <Button x:Name="Rectangle" HorizontalAlignment="Left" Margin="10,82,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Rectangle_Click" Background="#FFDEDEDE" Content="Rectangle"/>
         <Button x:Name="Ellipes" Content="Ellipse" HorizontalAlignment="Left" Margin="10,119,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Ellipes_Click"/>
         <Button x:Name="Polygon" Content="Polygon" HorizontalAlignment="Left" Margin="10,159,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Polygon_Click"/>
-        <TextBox x:Name="StrokeWidth" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="113,10,0,0" TextWrapping="Wrap" Text="2,2" VerticalAlignment="Top" Width="30"/>
+        <TextBox x:Name="StrokeWidth" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="113,10,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="30"/>
         <Menu HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="87">
             <MenuItem x:Name="File" Header="File" Height="19">
                 <MenuItem x:Name="Deserialize" Header="LoadFile" Height="19" Margin="0,0,-2,0" Click="Deserialize_MouseLeftButtonDown"/>
