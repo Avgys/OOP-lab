@@ -8,6 +8,9 @@ namespace Figures
 {
     class MyPolygon : PointsFigure
     {
+        public MyPolygon(){
+        }
+
         public MyPolygon(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Polygon()

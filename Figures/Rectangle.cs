@@ -28,6 +28,10 @@ namespace Figures
             return new MyRectangle(Thickness, FillColor, BorderColor, PrevPos, NewPos);
         }
 
+        public MyRectangle()
+        {
+        }
+
         public MyRectangle(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Rectangle()

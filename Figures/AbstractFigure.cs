@@ -33,6 +33,7 @@ namespace Figures
         public Point PrevPos { get; set; }
         [JsonPropertyName("NewPos")]
         public Point NewPos { get; set; }
+
         static protected Point NullPos;
 
         public virtual Point Draw(Canvas canva)
@@ -49,8 +50,8 @@ namespace Figures
         }
 
         public virtual AbstractFigure GetCopy()
-        {
-            return null;
+        {           
+            return this;
         }
 
         public AbstractFigure(double Thickness, Color FillColor, Color BorderColor,  Point PrevPos, Point NewPos)

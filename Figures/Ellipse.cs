@@ -27,6 +27,11 @@ namespace Figures
             return new MyEllipse(Thickness, FillColor, BorderColor, PrevPos, NewPos);
         }
 
+        public MyEllipse()
+        {
+
+        }
+
         public MyEllipse(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
         {
             Figure = new Ellipse()

@@ -13,8 +13,7 @@ namespace Figures
         List<SimpleFigure> FigureArr;
 
         public MyBrokenLine()
-        {
-            
+        {            
         }
 
         public MyBrokenLine(double thickness, Color fill, Color border, Point prevPos, Point newPos) : base(thickness, fill, border, prevPos, newPos)
