@@ -62,16 +62,15 @@ namespace DrawNamespace
 
             System.Type myType;
 
-            var FigureList = new List<AbstractFigure>();
+            rewind.FigureList.Clear();
 
             for (int i = 0; i < arrTypes.Length; i++)
             {
                 myType = System.Type.GetType(arrTypes[i], false, true);
-                AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure; 
-                FigureList.Add(nfig = nfig.GetCopy());
+                AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure;
+                rewind.AddToFigureList(nfig = nfig.GetCopy());
                 nfig.Draw(Canva);
             }
-            rewind.FigureList = FigureList;
         }
 
         public string Serialize()
