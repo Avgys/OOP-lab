@@ -45,6 +45,14 @@ namespace Plugins
 
                 if (figFactory != null)
                 {
+                    //for (int i = 0; i < PluginList.Count; i++) // Checking isAdded
+                    //{
+                    //    if(PluginList[i] == inputDll)
+                    //    {
+                    //        MessageBox.Show("This dll already added.");
+                    //        return null;
+                    //    }
+                    //}
                     PluginList.Add(inputDll);
                     Button b = new Button();
 

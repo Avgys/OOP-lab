@@ -33,7 +33,6 @@
             </MenuItem>
             <MenuItem x:Name="Plugins" Header="Plugins" HorizontalAlignment="Left" Height="19" Width="49">
                 <MenuItem x:Name="LoadPlugin" Header="LoadPlugin" HorizontalAlignment="Left" Height="19" Click="LoadPlugin_Click"/>
-                <MenuItem Header="UnloadPlugin" Height="21" Margin="0,0,7,0"/>
             </MenuItem>
         </Menu>
         <Label Content="Fill" Grid.Column="2" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Height="26" Width="25"/>
