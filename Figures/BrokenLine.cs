@@ -58,10 +58,15 @@ namespace Figures
         {
             var temp = new MyBrokenLine(Thickness, FillColor, BorderColor, PrevPos, NewPos);
             var Factory = new BrokenLineFactory();
-            for (int i = 0; i < this.FigureArr.Count; i++)
+            for(int i = 0; i < this.PointArray.Count - 1; i++)
             {
-                temp = Factory.GetFigure(Thickness, FillColor, BorderColor, FigureArr[i].PrevPos, FigureArr[i].NewPos, temp) as MyBrokenLine;
+                temp = Factory.GetFigure(Thickness, FillColor, BorderColor, this.PointArray[i], this.PointArray[i+1], temp) as MyBrokenLine;
             }
+
+            //for (int i = 0; i < this.FigureArr.Count; i++)
+            //{
+            //    temp = Factory.GetFigure(Thickness, FillColor, BorderColor, FigureArr[i].PrevPos, FigureArr[i].NewPos, temp) as MyBrokenLine;
+            //}
             return temp;
         }
 

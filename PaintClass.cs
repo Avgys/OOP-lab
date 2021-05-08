@@ -68,11 +68,10 @@ namespace DrawNamespace
             {
                 myType = System.Type.GetType(arrTypes[i], false, true);
                 AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure; 
-                FigureList.Add(nfig.GetCopy());
+                FigureList.Add(nfig = nfig.GetCopy());
+                nfig.Draw(Canva);
             }
-
             rewind.FigureList = FigureList;
-            rewind.ReturnAll();   
         }
 
         public string Serialize()
