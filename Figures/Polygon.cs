@@ -6,7 +6,7 @@ using System.Windows.Shapes;
 using Factory;
 namespace Figures
 {
-    class MyPolygon : PointsFigure
+    public class MyPolygon : PointsFigure
     {
         public MyPolygon(){
         }

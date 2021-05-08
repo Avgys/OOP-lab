@@ -54,13 +54,16 @@ namespace Figures
             return this;
         }
 
-        public AbstractFigure(double Thickness, Color FillColor, Color BorderColor,  Point PrevPos, Point NewPos)
+        public AbstractFigure(double thickness, Color fillColor, Color borderColor,  Point prevPos, Point newPos)
         {
             NullPos.X = -1;
             NullPos.Y = -1;
-            this.Thickness = Thickness;
-            this.FillColor = FillColor;
-            this.BorderColor = BorderColor;
+
+            this.Thickness = thickness;
+            this.FillColor = fillColor;
+            this.BorderColor = borderColor;
+            this.PrevPos = prevPos;
+            this.NewPos = newPos;
         }
 
         public AbstractFigure()

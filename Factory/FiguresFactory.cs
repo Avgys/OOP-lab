@@ -11,7 +11,7 @@ namespace Factory
 
     public class LineFactory : FiguresFactory
     {
-        public override SimpleFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             return new MyLine(thickness, fill, border, prevPos, newPos);
         }
@@ -19,7 +19,7 @@ namespace Factory
 
     public class EllipseFactory : FiguresFactory
     {
-        public override SimpleFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
+        public override AbstractFigure GetFigure(double thickness, Color fill, Color border, Point prevPos, Point newPos, AbstractFigure figure)
         {
             return new MyEllipse(thickness, fill, border, prevPos, newPos);
         }

@@ -1,12 +1,10 @@
-﻿using Figures;
-using System;
+﻿using Microsoft.Win32;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Threading;
-using System.Globalization;
-using System.IO;
-using Microsoft.Win32;
+
 
 namespace Paint_OOP_lab
 {
@@ -14,7 +12,7 @@ namespace Paint_OOP_lab
     using Factory;
     public partial class MainWindow : Window
     {
-        Paint paint;
+        public Paint paint;
         public MainWindow()
         {
             InitializeComponent();
@@ -118,10 +116,12 @@ namespace Paint_OOP_lab
         private void Rectangle_Click(object sender, RoutedEventArgs e)
         {
             paint.SetFactory(new RectangleFactory());
+            
         }
 
         private void Ellipes_Click(object sender, RoutedEventArgs e)
         {
+            
             paint.SetFactory(new EllipseFactory());
         }
 
@@ -166,10 +166,23 @@ namespace Paint_OOP_lab
             saveFileDialog.Filter = "json (*.json)|*.json";
             if (saveFileDialog.ShowDialog() == true)
             {
-                //FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate);
                 string str = paint.Serialize();
                 System.IO.File.WriteAllText(saveFileDialog.FileName, str);
             }
+        }
+
+        private void LoadPlugin_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "dll (*.dll)|*.dll";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //Button b = paint.pluginControl.LoadPlugin("C:\\Users\\ilyuh\\Desktop\\Main Projects For Study\\trapeze\\bin\\Debug\\net5.0-windows\\Star.dll");
+                Button b = paint.pluginControl.LoadPlugin(openFileDialog.FileName);
+                if (b != null)
+                    ToolBar.Children.Add(b);
+            }
+            
         }
     }
 }

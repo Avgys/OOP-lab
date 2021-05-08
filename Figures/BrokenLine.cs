@@ -9,7 +9,6 @@ namespace Figures
 {
     class MyBrokenLine : PointsFigure
     {
-
         List<SimpleFigure> FigureArr;
 
         public MyBrokenLine()

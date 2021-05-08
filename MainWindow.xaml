@@ -8,25 +8,21 @@
         Title="MainWindow" Height="466" Width="800" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="61*"/>
-            <RowDefinition Height="358*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="13*"/>
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="Canva" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" PreviewMouseMove="Canva_MouseMove" PreviewMouseDown="Canva_PreviewMouseDown" Margin="0,65,0,0" Grid.RowSpan="2" Grid.Column="1" Background="White"/>
-        <xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="167,10,0,33" HorizontalAlignment="Left" Width="20" Height="23"/>
-        <xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,457,33" HorizontalAlignment="Right" Width="22" Height="23"/>
-        <Button x:Name="UndoButton" Content="Undo" HorizontalAlignment="Left" Margin="10,288,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click" Height="20"/>
-        <Button x:Name="ClearAllButton" Content="Clear all" HorizontalAlignment="Left" Margin="10,313,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click_1" Height="20"/>
-        <Button x:Name="Line" Content="Line" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Line_Click"/>
-        <Button x:Name="Re_Undo" Content="Re-Undo" HorizontalAlignment="Left" Margin="10,263,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Re_Undo_Click" Height="20"/>
-        <Button x:Name="BrokenLine" Content="Broken Line" HorizontalAlignment="Left" Margin="10,47,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="BrokenLine_Click"/>
-        <Button x:Name="Rectangle" HorizontalAlignment="Left" Margin="10,82,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Rectangle_Click" Background="#FFDEDEDE" Content="Rectangle"/>
-        <Button x:Name="Ellipes" Content="Ellipse" HorizontalAlignment="Left" Margin="10,119,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Ellipes_Click"/>
-        <Button x:Name="Polygon" Content="Polygon" HorizontalAlignment="Left" Margin="10,159,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="21" Click="Polygon_Click"/>
+        <Canvas x:Name="Canva" MouseLeftButtonDown="Canva_MouseLeftButtonDown" MouseLeftButtonUp="Canva_MouseLeftButtonUp" MouseRightButtonDown="Canva_MouseRightButtonDown" PreviewMouseMove="Canva_MouseMove" PreviewMouseDown="Canva_PreviewMouseDown" Margin="0,65,0,0" Grid.RowSpan="3" Grid.Column="1" Background="White"/>
+        <xctk:ColorPicker x:Name="SelectedLineColor" Grid.Column="1" Margin="167,10,0,33" HorizontalAlignment="Left" Width="20"/>
+        <xctk:ColorPicker x:Name="SelectedFillColor" Grid.Column="1" Margin="0,10,457,33" HorizontalAlignment="Right" Width="22"/>
+        <Button x:Name="UndoButton" Content="Undo" HorizontalAlignment="Left" Margin="10,33,0,0" Grid.Row="2" VerticalAlignment="Top" Width="74" Click="Button_Click" Height="20"/>
+        <Button x:Name="ClearAllButton" Content="Clear all" HorizontalAlignment="Left" Margin="10,58,0,0" Grid.Row="2" VerticalAlignment="Top" Width="74" Click="Button_Click_1" Height="20"/>
+        <Button x:Name="Re_Undo" Content="Re-Undo" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="74" Click="Re_Undo_Click" Height="20"/>
         <TextBox x:Name="StrokeWidth" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="113,10,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="30"/>
         <Menu HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="87">
             <MenuItem x:Name="File" Header="File" Height="19">
@@ -36,11 +32,20 @@
                 <MenuItem x:Name="Exit" Header="Exit" HorizontalAlignment="Left" Height="19" Width="141" Margin="0,0,-2,0" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem x:Name="Plugins" Header="Plugins" HorizontalAlignment="Left" Height="19" Width="49">
-                <MenuItem Header="LoadPlugin" HorizontalAlignment="Left" Height="19"/>
+                <MenuItem x:Name="LoadPlugin" Header="LoadPlugin" HorizontalAlignment="Left" Height="19" Click="LoadPlugin_Click"/>
                 <MenuItem Header="UnloadPlugin" Height="21" Margin="0,0,7,0"/>
             </MenuItem>
         </Menu>
         <Label Content="Fill" Grid.Column="2" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Height="26" Width="25"/>
-        <Button x:Name="ClearAllButton_Copy" Content="Return all" HorizontalAlignment="Left" Margin="10,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="ClearAllButton_Copy_Click" Height="20"/>
+        <Button x:Name="ClearAllButton_Copy" Content="Return all" HorizontalAlignment="Left" Margin="10,83,0,0" Grid.Row="2" VerticalAlignment="Top" Width="74" Click="ClearAllButton_Copy_Click" Height="20"/>
+        <ScrollViewer Margin="0,66,0,0" Grid.RowSpan="2">
+            <ToolBarPanel x:Name="ToolBar" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                <Button x:Name="Line" Content="Line" Click="Line_Click" Height="21" Width="66"/>
+                <Button x:Name="BrokenLine" Content="Broken Line" Click="BrokenLine_Click" Height="21" Width="66"/>
+                <Button x:Name="Ellipes" Content="Ellipse" Click="Ellipes_Click" Height="21" Width="66"/>
+                <Button x:Name="Rectangle" Click="Rectangle_Click" Background="#FFDEDEDE" Content="Rectangle" Height="22" Width="66"/>
+                <Button x:Name="Polygon" Content="Polygon" Click="Polygon_Click" Height="23" Width="66"/>
+            </ToolBarPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

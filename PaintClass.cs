@@ -9,6 +9,7 @@ namespace DrawNamespace
 {
     using Factory;
     using System.Collections.Generic;
+    using Plugins;
 
     public class Paint
     {
@@ -21,6 +22,7 @@ namespace DrawNamespace
         AbstractFigure ChosenFigure;
         public FiguresFactory CurrentFactory;
         public RedoUndoClass rewind;
+        public PluginControl pluginControl;
         //public Serializer 
 
         public void SetPrevPos(Point pos)
@@ -67,9 +69,16 @@ namespace DrawNamespace
             for (int i = 0; i < arrTypes.Length; i++)
             {
                 myType = System.Type.GetType(arrTypes[i], false, true);
-                AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure;
-                rewind.AddToFigureList(nfig = nfig.GetCopy());
-                nfig.Draw(Canva);
+                if(myType == null)
+                {
+                    myType = pluginControl.FindType(arrTypes[i]);
+                }
+                if (myType != null)
+                {
+                    AbstractFigure nfig = JsonSerializer.Deserialize(jsonRows[i + 1], myType) as AbstractFigure;
+                    rewind.AddToFigureList(nfig = nfig.GetCopy());
+                    nfig.Draw(Canva);
+                }
             }
         }
 
@@ -134,12 +143,11 @@ namespace DrawNamespace
                 ImFigure = CurrentFactory.GetFigure(thickness, fill, border, PrevPos, pos, ImFigure);                 
                 ImFigure.Draw(Canva);
             }
-        }
-
-       
+        }      
 
         public Paint(Canvas canvaToDraw)
         {
+            pluginControl = new PluginControl(this);
             CurrentFactory = new LineFactory();
             Canva = canvaToDraw;
             PrevPos = new Point() { X = -1, Y = -1 };
