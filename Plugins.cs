@@ -34,13 +34,15 @@ namespace Plugins
                 Type figFactory = null;
                 for (int i = 0; i < types.Length; i++)
                 {
-                    Type temp = types[i];
-                    while (temp.BaseType != typeof(Object))
-                        temp = temp.BaseType;
-                    if (temp == typeof(FiguresFactory))
-                    {
+                    //Type temp = types[i];
+                    //while (temp.BaseType != typeof(Object))
+                    //    temp = temp.BaseType;
+                    //if (temp == typeof(FiguresFactory))
+                    //{
+                    //    figFactory = types[i];
+                    //}
+                    if (typeof(FiguresFactory).IsAssignableFrom(types[i]))
                         figFactory = types[i];
-                    }
                 }
 
                 if (figFactory != null)

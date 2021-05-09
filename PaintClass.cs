@@ -79,6 +79,10 @@ namespace DrawNamespace
                     rewind.AddToFigureList(nfig = nfig.GetCopy());
                     nfig.Draw(Canva);
                 }
+                else
+                {
+                    MessageBox.Show(arrTypes[i] + " is missing");
+                }
             }
         }
 
