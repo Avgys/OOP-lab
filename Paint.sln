@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintProgram", "PaintProgram.csproj", "{239AAB41-F749-4151-88CE-ED9E75B2868D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star", "..\Trapeze\Star.csproj", "{1B34A409-C6AC-4B12-AC1C-16F0D3878000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star", "..\star\Star.csproj", "{18F4FC4C-E66E-4208-A0D6-B58EBF749FF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{239AAB41-F749-4151-88CE-ED9E75B2868D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{239AAB41-F749-4151-88CE-ED9E75B2868D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{239AAB41-F749-4151-88CE-ED9E75B2868D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B34A409-C6AC-4B12-AC1C-16F0D3878000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B34A409-C6AC-4B12-AC1C-16F0D3878000}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B34A409-C6AC-4B12-AC1C-16F0D3878000}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B34A409-C6AC-4B12-AC1C-16F0D3878000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F4FC4C-E66E-4208-A0D6-B58EBF749FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F4FC4C-E66E-4208-A0D6-B58EBF749FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F4FC4C-E66E-4208-A0D6-B58EBF749FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F4FC4C-E66E-4208-A0D6-B58EBF749FF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
