@@ -61,7 +61,7 @@ namespace DrawNamespace
 
             string[] jsonRows = json.Split("\n");
             string[] arrTypes = JsonSerializer.Deserialize(jsonRows[0], jsonRows.GetType()) as string[];
-
+            List<string> notFound = new List<string>();
             System.Type myType;
 
             rewind.FigureList.Clear();
@@ -80,8 +80,10 @@ namespace DrawNamespace
                     nfig.Draw(Canva);
                 }
                 else
+                if (!notFound.Contains(arrTypes[i]))
                 {
                     MessageBox.Show(arrTypes[i] + " is missing");
+                    notFound.Add(arrTypes[i]);
                 }
             }
         }
