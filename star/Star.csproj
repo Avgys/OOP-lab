@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OOP-lab\PaintProgram.csproj" />
+    <ProjectReference Include="..\laba\PaintProgram.csproj" />
   </ItemGroup>
 
 </Project>
